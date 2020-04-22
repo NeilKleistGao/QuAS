@@ -1,0 +1,89 @@
+input[type="radio"] {
+    position: relative;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-left: 0.5rem;
+}
+
+.quas-radio:before, .quas-radio:checked:before {
+    content: "\a0";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #28b4ff;
+}
+
+.quas-radio:after {
+    content: "\a0";
+    width: 0px;
+    height: 12px;
+    text-align: center;
+    background-color: #28b4ff;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
+
+.quas-radio:checked:after {
+    width: 12px;
+    height: 12px;
+}
+
+.quas-radio:after {
+    transition: width 0.2s;
+    -webkit-transition: width 0.2s;
+}
+
+.quas-design-radio:before {
+    content: "\a0";
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    background-color: #28b4ff;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
+
+.quas-design-text {
+    outline: none;
+    max-width: 150px;
+    margin-left: 0.3rem;
+    height: 16px;
+    border: none;
+    border-bottom: 0px solid gray;
+    display: inline;
+    transition: border-bottom-width 0.2s;
+}
+
+.quas-design-text:focus {
+    border-bottom-width: 2px;
+}
+
+.quas-radio-group-item {
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.quas-operation-button {
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+    padding: 1px 2px 4px 2px;
+    margin: 20px 5px auto 5px;
+    border: 1px solid #28b4ff;
+    transition: 0.4s;
+}
+
+.quas-operation-button:hover {
+    background-color: #28b4ff;
+    color: rgb(245, 245, 245);
+}

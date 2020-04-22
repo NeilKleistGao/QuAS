@@ -1,0 +1,21 @@
+@font-face {
+    font-family: msyh;
+    src: url("../../assets/font/msyh.ttf");
+}
+
+p, h1, h2, h3, h4, h5, small, label, a, li {
+    font-family: msyh;
+    color: rgb(45, 45, 45);
+}
+
+label {
+    text-transform: lowercase;
+}
+
+h1, h2, h3, h4, h5 {
+    text-transform: capitalize;
+}
+
+.quas-text-center {
+    text-align: center;
+}
