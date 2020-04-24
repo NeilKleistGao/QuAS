@@ -1,9 +1,13 @@
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
     position: relative;
     appearance: none;
     width: 16px;
     height: 16px;
     margin-left: 0.5rem;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    cursor: pointer;
 }
 
 .quas-radio:before, .quas-radio:checked:before {
@@ -67,7 +71,7 @@ input[type="radio"] {
     border-bottom-width: 2px;
 }
 
-.quas-radio-group-item {
+.quas-list-item {
     margin-top: 0.5rem;
     margin-right: 0.5rem;
 }
@@ -81,9 +85,51 @@ input[type="radio"] {
     margin: 20px 5px auto 5px;
     border: 1px solid #28b4ff;
     transition: 0.4s;
+    margin: 12px 12px 12px 12px;
 }
 
 .quas-operation-button:hover {
     background-color: #28b4ff;
     color: rgb(245, 245, 245);
+}
+
+.quas-check:after {
+    content: "\2714";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid #28b4ff;
+    vertical-align: middle;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    text-align: center;
+    transition: background-color 0.2s;
+    -webkit-transition: background-color 0.2s;
+}
+
+.quas-check:checked:after {
+    background-color: #28b4ff;
+}
+
+.quas-check:disabled:after {
+    border: 1px solid gray;
+    background-color: gray;
+    content: "-";
+    cursor: auto;
+}
+
+.quas-design-check:before {
+    content: "\a0";
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    background-color: #28b4ff;
+    border-radius: 2px;
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
 }

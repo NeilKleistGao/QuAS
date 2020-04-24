@@ -1,14 +1,14 @@
 <template>
     <div>
         <div v-if="!editable">
-            <quas-radio class="quas-radio-group-item"
+            <quas-radio class="quas-list-item"
                         v-for="label in items.labels"
                         :name="name" :text="label"
                         :key="label"
                         v-model="result"/>
         </div>
         <div v-else :key="update_key">
-            <quas-radio class="quas-radio-group-item"
+            <quas-radio class="quas-list-item"
                         :editable="true"
                         :draggable="true"
                         v-for="(label, index) in labels"

@@ -1,11 +1,11 @@
 <template>
     <div>
         <div v-if="!editable">
-            <input ref="box" class="quas-radio" type="radio" :id="text" :name="name" @click="updateSelect">
+            <input class="quas-check" ref="box" type="checkbox" :id="text" @click="updateSelect" :disabled="!selectable">
             <label :for="text"> {{text}} </label>
         </div>
         <div v-else>
-            <input class="quas-design-radio" type="radio" disabled>
+            <input type="checkbox" class="quas-design-check" disabled>
             <input class="quas-design-text" type="text" v-model="label_text">
         </div>
     </div>
@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        name: "QuasRadio",
+        name: "QuasCheckBox",
         props: {
             editable: {
                 type: Boolean,
@@ -23,24 +23,30 @@
                 type: String
             },
             value: {
-                type: String,
                 require: true
             },
-            name: {
-                type: String,
-                require: true
+            selectable: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
             return {
-                label_text: this.value,
-                selected_text: this.value
+                selected_list: this.value,
+                label_text: this.value
             };
         },
         methods: {
             updateSelect() {
-                this.selected_text = this.text;
-                this.$emit("input", this.selected_text);
+                let index = this.selected_list.indexOf(this.text);
+                if (index == -1) {
+                    this.selected_list.push(this.text);
+                }
+                else {
+                    this.selected_list.splice(index, 1);
+                }
+
+                this.$emit("input", this.selected_list);
             }
         },
         watch: {
@@ -49,7 +55,7 @@
             }
         },
         beforeMount() {
-            if (this.selected_text === this.text) {
+            if (!this.editable && this.text in this.selected_list) {
                 this.$refs.box.checked = true;
             }
         }
@@ -61,6 +67,8 @@
 
     label, input[type="text"] {
         font-size: 16px;
+        position: relative;
+        top: -6px;
     }
     label {
         margin-left: 0.3rem;
