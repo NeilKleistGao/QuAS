@@ -5,16 +5,21 @@
         <quas-radio-group :items="radio_items" v-model="radio_result" name="test"/>
         <br>
         <quas-check-box-group :items="check_items" v-model="check_result"/>
+        <br>
+        <quas-text-box label="文本框："/>
+        <quas-text-box label="输入数字：" type="number"/>
+        <quas-text-box label="带正则校验的文本框：" type="class" :reg="reg"/>
     </div>
 </template>
 
 <script>
     import QuasRadioGroup from "@/components/QuasRadioGroup";
     import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
+    import QuasTextBox from "@/components/QuasTextBox";
 
     export default {
         name: "FillLayout",
-        components: {QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -30,7 +35,8 @@
                 },
                 check_result: {
                     result: []
-                }
+                },
+                reg: /test/i
             };
         },
         watch: {

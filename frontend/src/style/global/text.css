@@ -10,6 +10,7 @@ p, h1, h2, h3, h4, h5, small, label, a, li {
 
 label {
     text-transform: lowercase;
+    font-size: 16px;
 }
 
 h1, h2, h3, h4, h5 {

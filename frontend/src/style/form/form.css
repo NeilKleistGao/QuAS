@@ -1,3 +1,5 @@
+@import "../global/color.css";
+
 input[type="radio"], input[type="checkbox"] {
     position: relative;
     appearance: none;
@@ -17,7 +19,7 @@ input[type="radio"], input[type="checkbox"] {
     border-radius: 50%;
     display: inline-block;
     vertical-align: middle;
-    border: 1px solid #28b4ff;
+    border: 1px solid var(--primary);
 }
 
 .quas-radio:after {
@@ -25,7 +27,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 0px;
     height: 12px;
     text-align: center;
-    background-color: #28b4ff;
+    background-color: var(--primary);
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -48,7 +50,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 12px;
     height: 12px;
     text-align: center;
-    background-color: #28b4ff;
+    background-color: var(--primary);
     border-radius: 50%;
     display: block;
     position: absolute;
@@ -83,13 +85,13 @@ input[type="radio"], input[type="checkbox"] {
     color: black;
     padding: 1px 2px 4px 2px;
     margin: 20px 5px auto 5px;
-    border: 1px solid #28b4ff;
+    border: 1px solid var(--primary);
     transition: 0.4s;
     margin: 12px 12px 12px 12px;
 }
 
 .quas-operation-button:hover {
-    background-color: #28b4ff;
+    background-color: var(--primary);
     color: rgb(245, 245, 245);
 }
 
@@ -100,7 +102,7 @@ input[type="radio"], input[type="checkbox"] {
     height: 14px;
     background-color: white;
     border-radius: 2px;
-    border: 1px solid #28b4ff;
+    border: 1px solid var(--primary);
     vertical-align: middle;
     color: white;
     font-size: 14px;
@@ -111,7 +113,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .quas-check:checked:after {
-    background-color: #28b4ff;
+    background-color: var(--primary);
 }
 
 .quas-check:disabled:after {
@@ -126,10 +128,43 @@ input[type="radio"], input[type="checkbox"] {
     width: 12px;
     height: 12px;
     text-align: center;
-    background-color: #28b4ff;
+    background-color: var(--primary);
     border-radius: 2px;
     display: block;
     position: absolute;
     top: 3px;
     left: 3px;
+}
+
+.quas-text, .quas-valid-text, .quas-invalid-text {
+    outline: none;
+    max-width: 450px;
+    height: 16px;
+    border: none;
+    border-bottom: 2px dashed black;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    margin-top: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.quas-valid-text {
+    border-bottom: 2px solid var(--success);
+}
+
+.quas-invalid-text {
+    border-bottom: 2px solid var(--error);
+}
+
+.quas-text:focus, .quas-valid-text:focus, .quas-invalid-text:focus {
+    border: none;
+    border-bottom: 2px dashed var(--primary);
+}
+
+input::-webkit-inner-spin-button, input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
