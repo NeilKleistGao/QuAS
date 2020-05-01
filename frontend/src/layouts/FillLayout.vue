@@ -9,6 +9,8 @@
         <quas-text-box label="文本框："/>
         <quas-text-box label="输入数字：" type="number"/>
         <quas-text-box label="带正则校验的文本框：" type="class" :reg="reg"/>
+        <br>
+        <quas-rich-text label="富文本框" :min="10"/>
     </div>
 </template>
 
@@ -16,10 +18,11 @@
     import QuasRadioGroup from "@/components/QuasRadioGroup";
     import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
     import QuasTextBox from "@/components/QuasTextBox";
+    import QuasRichText from "@/components/QuasRichText";
 
     export default {
         name: "FillLayout",
-        components: {QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {

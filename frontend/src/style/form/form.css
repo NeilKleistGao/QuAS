@@ -158,7 +158,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .quas-text:focus, .quas-valid-text:focus, .quas-invalid-text:focus {
     border: none;
-    border-bottom: 2px dashed var(--primary);
+    border-bottom: 2px solid var(--primary);
 }
 
 input::-webkit-inner-spin-button, input::-webkit-outer-spin-button {
@@ -167,4 +167,29 @@ input::-webkit-inner-spin-button, input::-webkit-outer-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+.quas-rich-text, .quas-overflow-rich {
+    width: 450px;
+    height: 200px;
+    margin-top: 1rem;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+
+.quas-rich-text {
+    border: 1px solid black;
+}
+
+.quas-overflow-rich {
+    border: 1px solid var(--error);
+}
+
+.quas-rich-text:focus, .quas-overflow-rich:focus {
+    border: 2px solid var(--primary);
+}
+
+.quas-warning-text {
+    color: var(--error);
+    margin-top: 0.5rem;
 }

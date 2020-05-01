@@ -14,7 +14,7 @@
                 default: "text"
             },
             reg: {
-                type: Object
+                type: RegExp
             },
             value: {
                 type: String
