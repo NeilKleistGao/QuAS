@@ -33,7 +33,7 @@
         props: {
             value: {
                 type: Object,
-                require: true
+                required: true
             },
             editable: {
                 type: Boolean,

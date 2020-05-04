@@ -123,7 +123,7 @@ input[type="radio"], input[type="checkbox"] {
     cursor: auto;
 }
 
-.quas-design-check:before {
+.quas-design-check:before, .quas-design-sort:before {
     content: "\a0";
     width: 12px;
     height: 12px;
@@ -178,7 +178,7 @@ input[type="number"] {
 }
 
 .quas-rich-text {
-    border: 1px solid black;
+    border: 1px solid var(--primary);
 }
 
 .quas-overflow-rich {
@@ -186,10 +186,18 @@ input[type="number"] {
 }
 
 .quas-rich-text:focus, .quas-overflow-rich:focus {
-    border: 2px solid var(--primary);
+    border: 1px solid var(--primary);
 }
 
 .quas-warning-text {
     color: var(--error);
     margin-top: 0.5rem;
+}
+
+.quas-sort-item {
+
+}
+
+.quas-design-sort:before {
+    border: 1px solid rgb(245, 245, 245);
 }

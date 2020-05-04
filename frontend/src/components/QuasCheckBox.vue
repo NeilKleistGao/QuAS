@@ -23,7 +23,7 @@
                 type: String
             },
             value: {
-                require: true
+                required: true
             },
             selectable: {
                 type: Boolean,

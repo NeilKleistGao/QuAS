@@ -31,7 +31,7 @@
         props: {
             value: {
                 type: Object,
-                require: true
+                required: true
             },
             editable: {
                 type: Boolean,
@@ -42,7 +42,7 @@
             },
             name: {
                 type: String,
-                require: true
+                required: true
             }
         },
         data() {
