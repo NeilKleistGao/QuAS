@@ -5,16 +5,19 @@
         <quas-radio-group :editable="true" v-model="radio_items"/>
         <br>
         <quas-check-box-group :editable="true" v-model="check_items"/>
+        <br/>
+        <quas-sort-list :editable="true" v-model="sort_items"/>
     </div>
 </template>
 
 <script>
     import QuasRadioGroup from "@/components/QuasRadioGroup";
     import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
+    import QuasSortList from "@/components/QuasSortList";
 
     export default {
         name: "DesignLayout",
-        components: {QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasSortList, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -24,6 +27,9 @@
                     labels: ["选项4", "选项5", "选项6"],
                     min: -1,
                     max: 2
+                },
+                sort_items: {
+                    labels: ["选项7", "选项8", "选项9"]
                 }
             };
         },

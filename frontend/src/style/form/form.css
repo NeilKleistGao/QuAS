@@ -195,9 +195,10 @@ input[type="number"] {
 }
 
 .quas-sort-item {
-
+    margin-left: 0.3rem;
+    margin-top: 0.75rem;
 }
 
-.quas-design-sort:before {
-    border: 1px solid rgb(245, 245, 245);
+.quas-transition-list-item {
+    transition: all 1s;
 }

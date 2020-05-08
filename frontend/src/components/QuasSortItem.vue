@@ -1,11 +1,11 @@
 <template>
     <div>
         <div v-if="!editable">
-            <input class="quas-sort-item" ref="box" type="checkbox">
-            <label :for="text"> {{text}} </label>
+            <i class="iconfont icon-wuxupailie" />
+            <label :for="label"> {{label}} </label>
         </div>
         <div v-else>
-            <input type="checkbox" class="quas-design-sort" disabled>
+            <i class="iconfont icon-wuxupailie" />
             <input class="quas-design-text" type="text" v-model="text">
         </div>
     </div>
@@ -23,8 +23,7 @@
                 type: String
             },
             value: {
-                type: String,
-                required: true
+                type: String
             },
             index: {
                 type: Number,

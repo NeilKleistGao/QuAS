@@ -11,6 +11,8 @@
         <quas-text-box label="带正则校验的文本框：" type="class" :reg="reg"/>
         <br>
         <quas-rich-text label="富文本框" :min="10"/>
+        <br>
+        <quas-sort-list v-model="sort_result"/>
     </div>
 </template>
 
@@ -19,10 +21,11 @@
     import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
     import QuasTextBox from "@/components/QuasTextBox";
     import QuasRichText from "@/components/QuasRichText";
+    import QuasSortList from "@/components/QuasSortList";
 
     export default {
         name: "FillLayout",
-        components: {QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasSortList, QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -39,7 +42,10 @@
                 check_result: {
                     result: []
                 },
-                reg: /test/i
+                reg: /test/i,
+                sort_result: {
+                    result: ["选项7", "选项8", "选项9"]
+                }
             };
         },
         watch: {
