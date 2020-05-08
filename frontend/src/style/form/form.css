@@ -69,6 +69,10 @@ input[type="radio"], input[type="checkbox"] {
     transition: border-bottom-width 0.2s;
 }
 
+li > .quas-design-text {
+    max-width: 80px;
+}
+
 .quas-design-text:focus {
     border-bottom-width: 2px;
 }
@@ -202,3 +206,35 @@ input[type="number"] {
 .quas-transition-list-item {
     transition: all 1s;
 }
+
+.quas-tree-node-level-0, .quas-tree-node-level-1, .quas-tree-node-level-2, .quas-tree-node-level-3, .quas-tree-node-level-4, .quas-tree-node-level-5 {
+    list-style: circle;
+    color: var(--primary);
+}
+
+.quas-tree-node-level-0 {
+    margin-left: 0.3rem;
+}
+
+.quas-tree-node-level-1 {
+    margin-left: 0.8rem;
+}
+
+.quas-tree-node-level-2 {
+    margin-left: 1.3rem;
+}
+
+.quas-tree-node-level-3 {
+    margin-left: 1.8rem;
+}
+
+.quas-tree-node-level-4 {
+    margin-left: 2.3rem;
+}
+
+.quas-tree-node-level-5 {
+    margin-left: 2.8rem;
+}
+
+
+
