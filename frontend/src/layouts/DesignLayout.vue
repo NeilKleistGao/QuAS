@@ -8,7 +8,7 @@
         <br/>
         <quas-sort-list :editable="true" v-model="sort_items"/>
         <br/>
-        <quas-dropdown-tree v-model="dropdown_items"/>
+        <quas-dropdown :editable="true" v-model="dropdown_items"/>
     </div>
 </template>
 
@@ -16,11 +16,11 @@
     import QuasRadioGroup from "@/components/QuasRadioGroup";
     import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
     import QuasSortList from "@/components/QuasSortList";
-    import QuasDropdownTree from "@/components/QuasDropdownTree";
+    import QuasDropdown from "@/components/QuasDropdown";
 
     export default {
         name: "DesignLayout",
-        components: {QuasDropdownTree, QuasSortList, QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasDropdown, QuasSortList, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -35,6 +35,7 @@
                     labels: ["选项7", "选项8", "选项9"]
                 },
                 dropdown_items: {
+                    labels: ["1", "2", "3", "4", "5", "6"],
                     items: [{
                         label: "选项10",
                         level: 0

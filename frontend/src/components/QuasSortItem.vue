@@ -44,5 +44,10 @@
 </script>
 
 <style scoped>
-
+    label, input[type="text"] {
+        font-size: 16px;
+    }
+    label {
+        margin-left: 0.3rem;
+    }
 </style>

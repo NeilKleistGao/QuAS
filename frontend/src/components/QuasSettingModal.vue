@@ -1,10 +1,21 @@
 <template>
-    
+    <div>
+        <transition name="fade">
+            <div>
+
+            </div>
+        </transition>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "QuasSettingModal"
+        name: "QuasSettingModal",
+        props: {
+            visible: {
+                type: Boolean
+            }
+        }
     }
 </script>
 

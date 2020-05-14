@@ -17,13 +17,13 @@
         name: "QuasDropdownTree",
         props: {
             value: {
-                type: Object,
+                type: Array,
                 required: true
             }
         },
         data() {
             return {
-                content: this.value.items,
+                content: this.value,
                 update_key: 0
             };
         },
@@ -54,7 +54,7 @@
                 });
             },
             increaseLevel(index) {
-                if (this.content[index].level < 5) {
+                if (this.content[index].level < 5 && index != 0) {
                     this.content[index].level++;
                 }
                 this.update_key++;
