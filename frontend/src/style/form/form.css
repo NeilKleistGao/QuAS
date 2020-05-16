@@ -259,6 +259,7 @@ input[type="number"] {
     min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     margin-top: 0.1rem;
+    z-index: 999;
 }
 
 .quas-dropdown button {
@@ -282,4 +283,9 @@ input[type="number"] {
 
 .quas-dropdown-content a:hover {
     background-color: #f1f1f1;
+}
+
+.quas-grid-6 {
+    display: grid;
+    grid-template-columns: repeat(4, 180px);
 }

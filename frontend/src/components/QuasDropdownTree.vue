@@ -54,7 +54,7 @@
                 });
             },
             increaseLevel(index) {
-                if (this.content[index].level < 5 && index != 0) {
+                if (this.content[index].level < 5 && index != 0 && this.content[index].level <= this.content[index - 1].level) {
                     this.content[index].level++;
                 }
                 this.update_key++;

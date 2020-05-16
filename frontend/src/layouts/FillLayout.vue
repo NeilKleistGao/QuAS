@@ -14,7 +14,7 @@
         <br>
         <quas-sort-list v-model="sort_result"/>
         <br/>
-        <quas-dropdown-input placeholder="请选择" :items="dropdown_items" v-model="dropdown_result"/>
+        <quas-dropdown placeholder="请选择" :contents="dropdown_contents" v-model="dropdown_result"/>
     </div>
 </template>
 
@@ -24,11 +24,11 @@
     import QuasTextBox from "@/components/QuasTextBox";
     import QuasRichText from "@/components/QuasRichText";
     import QuasSortList from "@/components/QuasSortList";
-    import QuasDropdownInput from "@/components/QuasDropdownInput";
+    import QuasDropdown from "@/components/QuasDropdown";
 
     export default {
         name: "FillLayout",
-        components: {QuasDropdownInput, QuasSortList, QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasDropdown, QuasSortList, QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -49,8 +49,33 @@
                 sort_result: {
                     result: ["选项7", "选项8", "选项9"]
                 },
-                dropdown_items: ["选项10", "选项11", "选项12"],
-                dropdown_result: ""
+                dropdown_contents: {
+                    labels: ["题目1", "题目2", "题目3"],
+                    items: [
+                        {
+                            label: "选项10",
+                            level: 0
+                        }, {
+                            label: "选项11",
+                            level: 1
+                        },{
+                            label: "选项12",
+                            level: 2
+                        },{
+                            label: "选项13",
+                            level: 0
+                        },{
+                            label: "选项14",
+                            level: 1
+                        },{
+                            label: "选项15",
+                            level: 1
+                        }
+                    ]
+                },
+                dropdown_result: {
+                    result: ["", "", "", "", "", ""]
+                }
             };
         },
         watch: {
