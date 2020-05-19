@@ -1,8 +1,14 @@
 <template>
     <div>
         <transition name="fade">
-            <div>
-
+            <div v-if="visible">
+                <div>
+                    <h4>{{title}}</h4>
+                    <i class="iconfont icon-guanbi"/>
+                </div>
+                <div>
+                    <slot name="content"/>
+                </div>
             </div>
         </transition>
     </div>
@@ -13,7 +19,12 @@
         name: "QuasSettingModal",
         props: {
             visible: {
-                type: Boolean
+                type: Boolean,
+                default: false
+            },
+            title: {
+                type: String,
+                default: ""
             }
         }
     }

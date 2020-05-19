@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="!editable" :key="update_key" class="quas-grid-6">
+        <div v-if="!editable" :key="update_key" class="quas-dropdown-grid">
             <div v-for="(enable, index) in labels_enable" :key="index">
                 <div v-if="enable">
                     <label>{{contents.labels[index]}}</label>

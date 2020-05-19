@@ -15,6 +15,9 @@
         <quas-sort-list v-model="sort_result"/>
         <br/>
         <quas-dropdown placeholder="请选择" :contents="dropdown_contents" v-model="dropdown_result"/>
+        <br/>
+        <quas-date-picker type="date" v-model="date_result"/>
+        <quas-date-picker type="month" :range="true" v-model="month_result"/>
     </div>
 </template>
 
@@ -25,10 +28,13 @@
     import QuasRichText from "@/components/QuasRichText";
     import QuasSortList from "@/components/QuasSortList";
     import QuasDropdown from "@/components/QuasDropdown";
+    import QuasDatePicker from "@/components/QuasDatePicker";
 
     export default {
         name: "FillLayout",
-        components: {QuasDropdown, QuasSortList, QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
+        components: {
+            QuasDatePicker,
+            QuasDropdown, QuasSortList, QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -75,6 +81,15 @@
                 },
                 dropdown_result: {
                     result: ["", "", "", "", "", ""]
+                },
+                date_result: {
+                    result: "2001-08-28"
+                },
+                month_result: {
+                    result: {
+                        begin: "2020-05",
+                        end: "2020-09"
+                    }
                 }
             };
         },

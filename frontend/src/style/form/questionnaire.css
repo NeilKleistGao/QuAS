@@ -20,6 +20,16 @@ ul {
     margin-left: -20px;
 }
 
+::-webkit-clear-button {
+    visibility: hidden;
+}
+
+::-webkit-calendar-picker-indicator {
+    border: none;
+    background-color: white;
+    color: var(--primary);
+}
+
 .quas-radio:before, .quas-radio:checked:before {
     content: "\a0";
     width: 16px;
@@ -285,7 +295,20 @@ input[type="number"] {
     background-color: #f1f1f1;
 }
 
-.quas-grid-6 {
+.quas-dropdown-grid {
     display: grid;
     grid-template-columns: repeat(4, 180px);
+}
+
+.quas-date-picker {
+    margin: 0.5rem 0.5rem 0.3rem 0.5rem;
+    min-width: 180px;
+    outline: none;
+    border: none;
+    border-bottom: 1px black solid;
+    transition: border-bottom-color 0.3s;
+}
+
+.quas-date-picker:focus {
+    border-bottom-color: var(--primary);
 }

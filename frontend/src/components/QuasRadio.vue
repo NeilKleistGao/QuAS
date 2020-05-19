@@ -57,7 +57,7 @@
 </script>
 
 <style scoped>
-    @import "../style/form/form.css";
+    @import "../style/form/questionnaire.css";
 
     label, input[type="text"] {
         font-size: 16px;
