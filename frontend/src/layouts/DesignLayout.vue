@@ -9,6 +9,13 @@
         <quas-sort-list :editable="true" v-model="sort_items"/>
         <br/>
         <quas-dropdown :editable="true" v-model="dropdown_items"/>
+        <br/>
+        <p @click="showModal">点我展示弹窗</p>
+        <quas-setting-modal ref="modal" title="modal">
+            <div slot="content">
+                rua
+            </div>
+        </quas-setting-modal>
     </div>
 </template>
 
@@ -17,10 +24,11 @@
     import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
     import QuasSortList from "@/components/QuasSortList";
     import QuasDropdown from "@/components/QuasDropdown";
+    import QuasSettingModal from "@/components/QuasSettingModal";
 
     export default {
         name: "DesignLayout",
-        components: {QuasDropdown, QuasSortList, QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasSettingModal, QuasDropdown, QuasSortList, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -55,12 +63,18 @@
                         label: "选项15",
                         level: 5
                     }]
-                }
+                },
+                show: false
             };
         },
         watch: {
             "radio_items.labels"(new_value){
                 console.log(new_value);
+            }
+        },
+        methods: {
+            showModal() {
+                this.$refs.modal.show();
             }
         }
     }

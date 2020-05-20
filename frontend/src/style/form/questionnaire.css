@@ -312,3 +312,32 @@ input[type="number"] {
 .quas-date-picker:focus {
     border-bottom-color: var(--primary);
 }
+
+.quas-setting-modal {
+    width: 40%;
+    height: 40%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(245, 245, 245, 0.9);
+    z-index: 998;
+}
+
+.quas-modal-content {
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.quas-modal-mask {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 99999px;
+    height: 99999px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 997;
+}
