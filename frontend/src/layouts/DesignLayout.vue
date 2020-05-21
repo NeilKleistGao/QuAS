@@ -16,6 +16,8 @@
                 rua
             </div>
         </quas-setting-modal>
+        <br/>
+        <quas-markdown-text :editable="true" v-model="markdown"/>
     </div>
 </template>
 
@@ -25,10 +27,11 @@
     import QuasSortList from "@/components/QuasSortList";
     import QuasDropdown from "@/components/QuasDropdown";
     import QuasSettingModal from "@/components/QuasSettingModal";
+    import QuasMarkdownText from "@/components/QuasMarkdownText";
 
     export default {
         name: "DesignLayout",
-        components: {QuasSettingModal, QuasDropdown, QuasSortList, QuasRadioGroup, QuasCheckBoxGroup},
+        components: {QuasMarkdownText, QuasSettingModal, QuasDropdown, QuasSortList, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
             return {
                 radio_items: {
@@ -64,7 +67,8 @@
                         level: 5
                     }]
                 },
-                show: false
+                show: false,
+                markdown: ""
             };
         },
         watch: {

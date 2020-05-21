@@ -53,6 +53,9 @@
                     this.warning_text = "";
                 }
             }
+        },
+        beforeMount() {
+            this.$refs.box.innerHTML = this.value;
         }
     }
 </script>

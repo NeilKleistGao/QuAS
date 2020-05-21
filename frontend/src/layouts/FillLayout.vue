@@ -18,6 +18,8 @@
         <br/>
         <quas-date-picker type="date" v-model="date_result"/>
         <quas-date-picker type="month" :range="true" v-model="month_result"/>
+        <br/>
+        <quas-markdown-text :markdown="markdown"/>
     </div>
 </template>
 
@@ -29,10 +31,12 @@
     import QuasSortList from "@/components/QuasSortList";
     import QuasDropdown from "@/components/QuasDropdown";
     import QuasDatePicker from "@/components/QuasDatePicker";
+    import QuasMarkdownText from "@/components/QuasMarkdownText";
 
     export default {
         name: "FillLayout",
         components: {
+            QuasMarkdownText,
             QuasDatePicker,
             QuasDropdown, QuasSortList, QuasRichText, QuasTextBox, QuasRadioGroup, QuasCheckBoxGroup},
         data() {
@@ -90,7 +94,8 @@
                         begin: "2020-05",
                         end: "2020-09"
                     }
-                }
+                },
+                markdown: "# hello"
             };
         },
         watch: {
