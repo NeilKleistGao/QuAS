@@ -22,12 +22,12 @@
 </template>
 
 <script>
-    import QuasRadioGroup from "@/components/QuasRadioGroup";
-    import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
-    import QuasSortList from "@/components/QuasSortList";
-    import QuasDropdown from "@/components/QuasDropdown";
-    import QuasSettingModal from "@/components/QuasSettingModal";
-    import QuasMarkdownText from "@/components/QuasMarkdownText";
+    import QuasRadioGroup from "@/components/QuasQuestionnaire/QuasRadioGroup";
+    import QuasCheckBoxGroup from "@/components/QuasQuestionnaire/QuasCheckBoxGroup";
+    import QuasSortList from "@/components/QuasQuestionnaire/QuasSortList";
+    import QuasDropdown from "@/components/QuasQuestionnaire/QuasDropdown";
+    import QuasSettingModal from "@/components/QuasQuestionnaire/QuasSettingModal";
+    import QuasMarkdownText from "@/components/QuasQuestionnaire/QuasMarkdownText";
 
     export default {
         name: "DesignLayout",

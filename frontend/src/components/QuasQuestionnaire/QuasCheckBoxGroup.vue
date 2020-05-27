@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import QuasCheckBox from "@/components/QuasCheckBox";
+    import QuasCheckBox from "@/components/QuasQuestionnaire/QuasCheckBox";
 
     export default {
         name: "QuasCheckBoxGroup",

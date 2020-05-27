@@ -24,7 +24,7 @@
 </template>
 
 <script>
-    import QuasRadio from "@/components/QuasRadio";
+    import QuasRadio from "@/components/QuasQuestionnaire/QuasRadio";
     export default {
         name: "QuasRadioGroup",
         components: {QuasRadio},

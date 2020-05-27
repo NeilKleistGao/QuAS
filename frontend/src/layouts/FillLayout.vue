@@ -24,14 +24,14 @@
 </template>
 
 <script>
-    import QuasRadioGroup from "@/components/QuasRadioGroup";
-    import QuasCheckBoxGroup from "@/components/QuasCheckBoxGroup";
-    import QuasTextBox from "@/components/QuasTextBox";
-    import QuasRichText from "@/components/QuasRichText";
-    import QuasSortList from "@/components/QuasSortList";
-    import QuasDropdown from "@/components/QuasDropdown";
-    import QuasDatePicker from "@/components/QuasDatePicker";
-    import QuasMarkdownText from "@/components/QuasMarkdownText";
+    import QuasRadioGroup from "@/components/QuasQuestionnaire/QuasRadioGroup";
+    import QuasCheckBoxGroup from "@/components/QuasQuestionnaire/QuasCheckBoxGroup";
+    import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
+    import QuasRichText from "@/components/QuasQuestionnaire/QuasRichText";
+    import QuasSortList from "@/components/QuasQuestionnaire/QuasSortList";
+    import QuasDropdown from "@/components/QuasQuestionnaire/QuasDropdown";
+    import QuasDatePicker from "@/components/QuasQuestionnaire/QuasDatePicker";
+    import QuasMarkdownText from "@/components/QuasQuestionnaire/QuasMarkdownText";
 
     export default {
         name: "FillLayout",

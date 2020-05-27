@@ -15,8 +15,8 @@
 </template>
 
 <script>
-    import QuasDropdownTree from "@/components/QuasDropdownTree";
-    import QuasDropdownInput from "@/components/QuasDropdownInput";
+    import QuasDropdownTree from "@/components/QuasQuestionnaire/QuasDropdownTree";
+    import QuasDropdownInput from "@/components/QuasQuestionnaire/QuasDropdownInput";
     export default {
         name: "QuasDropdown",
         components: {QuasDropdownInput, QuasDropdownTree},

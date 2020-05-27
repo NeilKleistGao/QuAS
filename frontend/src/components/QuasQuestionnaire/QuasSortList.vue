@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import QuasSortItem from "@/components/QuasSortItem";
+    import QuasSortItem from "@/components/QuasQuestionnaire/QuasSortItem";
     export default {
         name: "QuasSortList",
         components: {QuasSortItem},
