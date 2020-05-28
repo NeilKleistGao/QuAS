@@ -20,6 +20,10 @@ ul {
     margin-left: -20px;
 }
 
+textarea {
+    resize: none;
+}
+
 ::-webkit-clear-button {
     visibility: hidden;
 }
@@ -85,6 +89,7 @@ ul {
     border-bottom: 0px solid gray;
     display: inline;
     transition: border-bottom-width 0.2s;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 li > .quas-design-text {
@@ -314,15 +319,15 @@ input[type="number"] {
 }
 
 .quas-setting-modal {
-    width: 40%;
-    height: 40%;
+    width: 30%;
+    height: 30%;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgba(245, 245, 245, 0.9);
+    background-color: white;
     z-index: 998;
 }
 

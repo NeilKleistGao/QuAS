@@ -1,7 +1,7 @@
 <template>
     <div>
         <label>{{label}}</label>
-        <div :class="state_class" contenteditable="true" @input="updateText" ref="box"/>
+        <textarea :class="state_class" v-model="content"/>
         <small v-if="state_class == 'quas-overflow-rich'" class="quas-warning-text">{{warning_text}}</small>
     </div>
 </template>
@@ -29,19 +29,19 @@
         data() {
             return {
                 state_class: "quas-rich-text",
-                warning_text: ""
+                warning_text: "",
+                content: this.value
             };
         },
-        methods: {
-            updateText() {
-                let text = this.$refs.box.innerHTML;
-                this.$emit("input", text);
+        watch: {
+            content(new_value) {
+                this.$emit("input", new_value);
 
-                if ((this.min != -1 && text.length < this.min) ||
-                    (this.max != -1 && text.length > this.max)) {
+                if ((this.min != -1 && new_value.length < this.min) ||
+                    (this.max != -1 && new_value.length > this.max)) {
                     this.state_class = "quas-overflow-rich";
 
-                    if (text.length < this.min) {
+                    if (new_value.length < this.min) {
                         this.warning_text = "至少需要填写" + this.min.toString() + "个字";
                     }
                     else {
@@ -53,9 +53,6 @@
                     this.warning_text = "";
                 }
             }
-        },
-        beforeMount() {
-            this.$refs.box.innerHTML = this.value;
         }
     }
 </script>
