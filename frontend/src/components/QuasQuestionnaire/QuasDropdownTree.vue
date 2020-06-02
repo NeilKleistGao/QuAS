@@ -30,9 +30,7 @@
         watch: {
             content: {
                 handler(new_value){
-                    this.$emit("input", {
-                        items: new_value
-                    });
+                    this.$emit("input", new_value);
                 },
                 deep: true
             }

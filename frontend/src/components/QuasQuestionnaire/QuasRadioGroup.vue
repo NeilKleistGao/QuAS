@@ -17,7 +17,8 @@
                         @blur.native.capture="erase(index)"
                         @dragstart.native="dragStart(index)"
                         @dragenter.native="dragEnter(index)"
-                        @dragend.native="dragEnd"/>
+                        @dragend.native="dragEnd"
+                        :name="name"/>
             <button @click="push" class="quas-operation-button">添加</button>
         </div>
     </div>

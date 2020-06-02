@@ -21,7 +21,7 @@
             },
             label: {
                 type: String,
-                required: true
+                default: ""
             }
         },
         data() {

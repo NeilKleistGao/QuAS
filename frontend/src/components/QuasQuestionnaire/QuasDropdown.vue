@@ -35,7 +35,7 @@
             },
             contents: {
                 type: Object,
-                required: true
+                default: null
             }
         },
         data() {
@@ -119,8 +119,11 @@
             }
         },
         beforeMount() {
-            for (let item of this.result) {
-                this.previous_result.push(item);
+            console.log(this.items);
+            if (!this.editable) {
+                for (let item of this.result) {
+                    this.previous_result.push(item);
+                }
             }
         }
     }
