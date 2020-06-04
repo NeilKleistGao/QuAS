@@ -346,3 +346,16 @@ input[type="number"] {
     left: 0;
     z-index: 997;
 }
+
+.quas-setting-button {
+    position: relative;
+    top: 18px;
+    right: -441px;
+    color: gray;
+    opacity: 50%;
+}
+
+.quas-setting-button:hover {
+    color: var(--primary);
+    opacity: 100%;
+}

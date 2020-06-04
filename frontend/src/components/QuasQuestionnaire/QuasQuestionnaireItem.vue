@@ -1,6 +1,9 @@
 <template>
     <div>
         <quas-markdown-text v-model="information" :editable="editable" :markdown="information"/>
+        <div v-if="showMoreSettingsIcon">
+            <i class="iconfont icon-icon_shezhi quas-setting-button" @click="showModal" />
+        </div>
 
         <quas-check-box-group v-if="type == 'check'" :editable="editable" v-model="content"/>
         <quas-date-picker v-else-if="type == 'date' && !editable"/>
@@ -9,6 +12,12 @@
         <quas-rich-text v-else-if="type == 'rich' && !editable"/>
         <quas-sort-list v-else-if="type == 'sort'" :editable="editable" v-model="content"/>
         <quas-text-box v-else-if="type == 'text' && !editable"/>
+
+        <quas-setting-modal ref="modal" title="高级设置">
+            <template slot="content">
+                test
+            </template>
+        </quas-setting-modal>
     </div>
 </template>
 
@@ -21,9 +30,11 @@
     import QuasRichText from "@/components/QuasQuestionnaire/QuasRichText";
     import QuasSortList from "@/components/QuasQuestionnaire/QuasSortList";
     import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
+    import QuasSettingModal from "@/components/QuasQuestionnaire/QuasSettingModal";
     export default {
         name: "QuasQuestionnaireItem",
         components: {
+            QuasSettingModal,
             QuasTextBox,
             QuasSortList,
             QuasRichText, QuasRadioGroup, QuasDropdown, QuasDatePicker, QuasCheckBoxGroup, QuasMarkdownText},
@@ -44,7 +55,8 @@
         data() {
             return {
                 content: this.value.content,
-                information: this.value.information
+                information: this.value.information,
+                more_settings_type: ["check", "date", "drop", "rich", "text"]
             };
         },
         watch: {
@@ -62,6 +74,16 @@
                     });
                 },
                 deep: true
+            }
+        },
+        computed: {
+            showMoreSettingsIcon() {
+                return this.more_settings_type.indexOf(this.type) > -1;
+            }
+        },
+        methods: {
+            showModal() {
+                this.$refs.modal.show();
             }
         }
     }
