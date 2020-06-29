@@ -1,6 +1,7 @@
 <template>
     <div>
         <label>{{label}}</label>
+        <br/>
         <textarea :class="state_class" v-model="content"/>
         <small v-if="state_class == 'quas-overflow-rich'" class="quas-warning-text">{{warning_text}}</small>
     </div>

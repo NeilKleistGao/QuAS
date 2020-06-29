@@ -48,10 +48,12 @@
                 this.$emit("input", new_value);
             }
         },
-        beforeMount() {
-            if (this.selected_text === this.text) {
-                this.$refs.box.checked = true;
-            }
+        mounted() {
+            this.$nextTick(() => {
+                if (this.selected_text === this.text) {
+                    this.$refs.box.checked = true;
+                }
+            });
         }
     }
 </script>

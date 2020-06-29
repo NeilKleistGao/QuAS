@@ -32,7 +32,9 @@
         },
         watch: {
             test(new_value) {
-                this.$emit("input", new_value);
+                if (this.state_class === "quas-valid-text") {
+                    this.$emit("input", new_value);
+                }
             }
         },
         methods: {

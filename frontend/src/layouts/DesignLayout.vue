@@ -28,8 +28,8 @@
                     information: "这是一个多选题的测试",
                     content: {
                         labels: ["选项1", "选项2", "选项3"],
-                        min: -1,
-                        max: -1
+                        min: 0,
+                        max: 3
                     }
                 },
                 date_item: {

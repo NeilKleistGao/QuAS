@@ -49,7 +49,7 @@
                 },
                 check_items: {
                     labels: ["选项4", "选项5", "选项6"],
-                    min: -1,
+                    min: 0,
                     max: 2
                 },
                 check_result: {
