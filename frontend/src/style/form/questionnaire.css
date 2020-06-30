@@ -173,6 +173,7 @@ li > .quas-design-text {
     -webkit-transition: 0.5s;
     margin-top: 1.5rem;
     margin-left: 0.5rem;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .quas-valid-text {

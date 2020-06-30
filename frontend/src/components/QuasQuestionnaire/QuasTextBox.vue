@@ -39,7 +39,7 @@
         },
         methods: {
             check() {
-                if (this.type != "text" && this.reg != null && this.reg != undefined) {
+                if (this.reg != null && this.reg != undefined) {
                     if (this.reg.test(this.text) && this.text !== "") {
                         this.state_class = "quas-valid-text";
                     }

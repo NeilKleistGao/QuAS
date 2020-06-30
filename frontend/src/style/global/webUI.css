@@ -1,0 +1,83 @@
+nav {
+    background-color: var(--secondary);
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 16% auto;
+}
+
+.quas-nav-band {
+    width: 100%;
+    height: 36px;
+}
+
+.quas-nav-band > a {
+    text-decoration: none;
+    vertical-align: middle;
+    position: relative;
+    top: -50%;
+}
+
+.quas-nav-band > img {
+    margin: 0.25rem 0.25rem 0.25rem 0.25rem;
+}
+
+.quas-nav-band .quas-nav-bar {
+    float: left;
+}
+
+.quas-nav-link {
+    text-decoration: none;
+}
+
+.quas-nav-bar > ul {
+    display: inline;
+}
+
+.quas-nav-bar > ul > li {
+    display: inline-block;
+    padding: 10px 20px;
+    transition: all 0.5s;
+}
+
+.quas-nav-bar > ul > li:hover {
+    background-color: #a6dcef;
+}
+
+.quas-tool-bar {
+    width: 64px;
+    height: 80%;
+    position: fixed;
+    left: 36px;
+    top: 10%;
+    background-color: var(--secondary);
+    text-align: center;
+}
+
+.quas-tool-icon {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    opacity: 75%;
+    transition: all 0.5s;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.quas-tool-icon:hover {
+    background-color: #a6dcef;
+}
+
+.quas-design-container {
+    background-color: #f5f5f5;
+    width: 80%;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+}
+
+.quas-design-header {
+    text-align: center;
+}
+
+.quas-ques-item {
+    margin-left: 1rem;
+}
