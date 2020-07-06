@@ -10,8 +10,10 @@
             </div>
 
             <div v-for="(item, index) in questionnaire" :key="index">
-                <h4 style="margin-left: 1rem">第{{index}}题</h4>
-                <quas-questionnaire-item class="quas-ques-item" :type="item.type" v-model="item.data" :editable="true"/>
+                <div style="margin-left: 20px">
+                    <h4 style="margin-left: 40px">第{{index}}题</h4>
+                    <quas-questionnaire-item style="margin-left: 80px" class="quas-ques-item" :type="item.type" v-model="item.data" :editable="true"/>
+                </div>
                 <br/>
             </div>
         </div>
@@ -129,6 +131,12 @@
             }
         },
         watch: {
+            questionnaire: {
+                handler(new_value) {
+                    console.log(new_value);
+                },
+                deep: true
+            }
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <label>{{label}}</label>
-        <input :type="type" :class="state_class" required @change="check" v-model="text">
+        <input :type="type" :class="state_class" required v-model="text">
     </div>
 </template>
 
@@ -31,7 +31,8 @@
             };
         },
         watch: {
-            test(new_value) {
+            text(new_value) {
+                this.check();
                 if (this.state_class === "quas-valid-text") {
                     this.$emit("input", new_value);
                 }

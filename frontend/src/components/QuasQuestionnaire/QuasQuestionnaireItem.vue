@@ -5,22 +5,22 @@
             <i class="iconfont icon-icon_shezhi quas-setting-button" @click="showModal" />
         </div>
 
-        <quas-check-box-group v-if="type == 'check'" :editable="editable" v-model="content"/>
-        <quas-date-picker v-else-if="type == 'date' && !editable"/>
-        <quas-dropdown v-else-if="type == 'drop'" :editable="editable" v-model="content"/>
-        <quas-radio-group v-else-if="type == 'radio'" :editable="editable" v-model="content" :name="information"/>
-        <quas-rich-text v-else-if="type == 'rich' && !editable"/>
-        <quas-sort-list v-else-if="type == 'sort'" :editable="editable" v-model="content"/>
-        <quas-text-box v-else-if="type == 'text' && !editable"/>
+        <quas-check-box-group v-if="type === 'check'" :editable="editable" v-model="content"/>
+        <quas-date-picker v-else-if="type === 'date' && !editable"/>
+        <quas-dropdown v-else-if="type === 'drop'" :editable="editable" v-model="content"/>
+        <quas-radio-group v-else-if="type === 'radio'" :editable="editable" v-model="content" :name="information"/>
+        <quas-rich-text v-else-if="type === 'rich' && !editable"/>
+        <quas-sort-list v-else-if="type === 'sort'" :editable="editable" v-model="content"/>
+        <quas-text-box v-else-if="type === 'text' && !editable"/>
 
         <quas-setting-modal ref="modal" title="高级设置" :key="update_key">
             <template slot="content">
-                <div v-if="type == 'check'">
+                <div v-if="type === 'check'">
                     <quas-text-box label="最少需要选择：" :reg="/^\d+$/" v-model="check_min"/>
                     <br/>
                     <quas-text-box label="最多可以选择：" :reg="/^\d+$/" v-model="check_max"/>
                 </div>
-                <div v-else-if="type == 'date'">
+                <div v-else-if="type === 'date'">
                     <label>日期选择类型：</label>
                     <quas-radio-group name="radio_type" :items="date_type_label_list" v-model="date_type_res"/>
                     <br/>
@@ -29,17 +29,17 @@
                     <label>有效日期范围：</label>
                     <quas-date-picker :range="true" :type="date_type" v-model="date_range"/>
                 </div>
-                <div v-else-if="type == 'drop'">
+                <div v-else-if="type === 'drop'">
                     <div v-for="(label, index) in content.labels" :key="index">
                         <quas-text-box v-if="index <= drop_max" :label="'标题' + (index + 1).toString()" type="text" v-model="content.labels[index]"/>
                     </div>
                 </div>
-                <div v-else-if="type == 'rich'">
+                <div v-else-if="type === 'rich'">
                     <quas-text-box label="最少字数：" :reg="/^\d+$/" v-model="rich_min"/>
                     <br/>
                     <quas-text-box label="最多字数：" :reg="/^\d+$/" v-model="rich_max"/>
                 </div>
-                <div v-else-if="type == 'text'">
+                <div v-else-if="type === 'text'">
                     <label>文本类型：</label>
                     <quas-radio-group name="text_type" :items="text_type_label_list" v-model="text_type_res"/>
                     <quas-text-box label="正则表达式：" v-model="text_reg"/>
@@ -88,7 +88,7 @@
                 content: this.value.content,
                 information: this.value.information,
                 more_settings_type: ["check", "date", "drop", "rich", "text"],
-                check_max: "0",
+                check_max: "1",
                 check_min: "0",
                 date_type_label_list: {
                     labels: ["年、月、日", "年、月", "年、周", "小时、分钟"]
