@@ -11,7 +11,7 @@
 
             <div v-for="(item, index) in questionnaire" :key="index">
                 <div style="margin-left: 20px">
-                    <h4 style="margin-left: 40px">第{{index}}题</h4>
+                    <h4 style="margin-left: 40px">第{{index + 1}}题</h4>
                     <quas-questionnaire-item style="margin-left: 80px" class="quas-ques-item" :type="item.type" v-model="item.data" :editable="true"/>
                 </div>
                 <br/>

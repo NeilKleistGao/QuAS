@@ -1,17 +1,26 @@
 <template>
     <div>
-        <quas-markdown-text v-model="information" :editable="editable" :markdown="information"/>
-        <div v-if="showMoreSettingsIcon">
+        <quas-markdown-text v-if="editable" v-model="information" :editable="editable" :markdown="information"/>
+        <quas-markdown-text v-else :editable="editable" :markdown="questionnaire.information"/>
+        <div v-if="showMoreSettingsIcon && editable">
             <i class="iconfont icon-icon_shezhi quas-setting-button" @click="showModal" />
         </div>
 
-        <quas-check-box-group v-if="type === 'check'" :editable="editable" v-model="content"/>
-        <quas-date-picker v-else-if="type === 'date' && !editable"/>
-        <quas-dropdown v-else-if="type === 'drop'" :editable="editable" v-model="content"/>
-        <quas-radio-group v-else-if="type === 'radio'" :editable="editable" v-model="content" :name="information"/>
-        <quas-rich-text v-else-if="type === 'rich' && !editable"/>
-        <quas-sort-list v-else-if="type === 'sort'" :editable="editable" v-model="content"/>
-        <quas-text-box v-else-if="type === 'text' && !editable"/>
+        <div v-if="editable">
+            <quas-check-box-group v-if="type === 'check'" :editable="editable" v-model="content"/>
+            <quas-dropdown v-else-if="type === 'drop'" :editable="editable" v-model="content"/>
+            <quas-radio-group v-else-if="type === 'radio'" :editable="editable" v-model="content" :name="information"/>
+            <quas-sort-list v-else-if="type === 'sort'" :editable="editable" v-model="content"/>
+        </div>
+        <div v-else>
+            <quas-check-box-group v-if="type === 'check'" :editable="editable" :items="questionnaire.content" v-model="result"/>
+            <quas-date-picker v-else-if="type === 'date'" :type="questionnaire.content.type" v-model="result"/>
+            <quas-dropdown v-else-if="type === 'drop'" :editable="editable" v-model="result" :contents="questionnaire.content"/>
+            <quas-radio-group v-else-if="type === 'radio'" :editable="editable" :items="questionnaire.content" :name="questionnaire.information" v-model="result"/>
+            <quas-rich-text v-else-if="type === 'rich'" v-model="result.result"/>
+            <quas-sort-list v-else-if="type === 'sort'" :editable="editable" v-model="result" />
+            <quas-text-box v-else-if="type === 'text'" v-model="result.result"/>
+        </div>
 
         <quas-setting-modal ref="modal" title="高级设置" :key="update_key">
             <template slot="content">
@@ -81,12 +90,16 @@
             value: {
                 type: Object,
                 required: true
+            },
+            questionnaire: {
+                type: Object
             }
         },
         data() {
             return {
                 content: this.value.content,
                 information: this.value.information,
+                result: this.value,
                 more_settings_type: ["check", "date", "drop", "rich", "text"],
                 check_max: "1",
                 check_min: "0",
@@ -132,6 +145,14 @@
                     information: new_value,
                     content: this.content
                 });
+            },
+            result: {
+                handler(new_value) {
+                    this.$emit("input", {
+                        result: new_value
+                    })
+                },
+                deep: true
             },
             content: {
                 handler(new_value) {

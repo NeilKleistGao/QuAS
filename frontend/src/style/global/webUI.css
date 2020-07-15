@@ -40,7 +40,7 @@ nav {
     top: 10%;
     background-color: var(--secondary);
     text-align: center;
-    z-index: 999;
+    z-index: 996;
 }
 
 .quas-tool-icon {
@@ -64,8 +64,20 @@ nav {
     right: 10%;
 }
 
+.quas-fill-container {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: auto;
+    background-color: #f5f5f5;
+}
+
 .quas-design-header {
     text-align: center;
+}
+
+.quas-fill-header {
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .quas-ques-item {

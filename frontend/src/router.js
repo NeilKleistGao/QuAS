@@ -24,7 +24,7 @@ const routes = [
     },
     {
         path: "/",
-        redirect: "/questionnaire/design/3154"
+        redirect: "/questionnaire/fill/3154"
     }
 ];
 
