@@ -20,14 +20,23 @@
     export default {
         name: "QuasNav",
         props: {
+            /**
+             * 导航栏的标签数组
+             */
             labels: {
                 type: Array,
                 required: true
             },
+            /**
+             * 导航栏链接数组
+             */
             links: {
                 type: Array,
                 required: true
             },
+            /**
+             * 当前活动项下标
+             */
             active_index: {
                 type: Number,
                 default: 0

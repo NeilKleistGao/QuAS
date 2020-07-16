@@ -9,13 +9,22 @@
     export default {
         name: "QuasRichText",
         props: {
+            /**
+             * 富文本框内的文本内容
+             */
             value: {
                 type: String
             },
+            /**
+             * 最大字数限制，-1为不设限制
+             */
             max: {
                 type: Number,
                 default: -1
             },
+            /**
+             * 最少字数限制，-1为不设
+             */
             min: {
                 type: Number,
                 default: -1
@@ -30,6 +39,10 @@
         },
         watch: {
             content(new_value) {
+                /**
+                 * 更新富文本框内容
+                 * @event{oninput}
+                 */
                 this.$emit("input", new_value);
 
                 if ((this.min != -1 && new_value.length < this.min) ||

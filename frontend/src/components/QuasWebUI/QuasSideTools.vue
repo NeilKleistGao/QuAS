@@ -18,6 +18,9 @@
         },
         methods: {
             callback(label) {
+                /**
+                 * 返回点击项的名称
+                 */
                 this.$emit("callback", label);
             }
         }

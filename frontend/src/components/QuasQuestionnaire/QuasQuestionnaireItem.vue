@@ -79,18 +79,30 @@
             QuasSortList,
             QuasRichText, QuasRadioGroup, QuasDropdown, QuasDatePicker, QuasCheckBoxGroup, QuasMarkdownText},
         props: {
+            /**
+             * 问卷题目的类型
+             */
             type: {
                 type: String,
                 default: "none"
             },
+            /**
+             * 是否可编辑
+             */
             editable: {
                 type: Boolean,
                 default: false
             },
+            /**
+             * 非可编辑模式下为问卷填写结果；否则为问卷编辑数据，包含information（提示信息）和content（问卷内容）两个字段
+             */
             value: {
                 type: Object,
                 required: true
             },
+            /**
+             * 非可编辑模式下问卷数据对象，包含information（提示信息）和content（问卷内容）两个字段
+             */
             questionnaire: {
                 type: Object
             }
@@ -141,6 +153,10 @@
         },
         watch: {
             information(new_value) {
+                /**
+                 * 更新问卷提示信息
+                 * @event{oninput}
+                 */
                 this.$emit("input", {
                     information: new_value,
                     content: this.content
@@ -148,6 +164,10 @@
             },
             result: {
                 handler(new_value) {
+                    /**
+                     * 更新问卷填写结果
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         result: new_value
                     })
@@ -170,6 +190,10 @@
                         this.update_key++;
                     }
 
+                    /**
+                     * 更新问卷具体内容
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         information: this.information,
                         content: new_value
@@ -182,6 +206,10 @@
                 let num_max = parseInt(this.check_max);
 
                 if (num_min < num_max) {
+                    /**
+                     * 更新问卷具体内容
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         information: this.information,
                         content: {
@@ -198,6 +226,10 @@
 
                 if (num_max > num_min) {
                     num_max = (num_max > this.content.labels.length) ? this.content.labels.length : num_max;
+                    /**
+                     * 更新问卷具体内容
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         information: this.information,
                         content: {
@@ -214,7 +246,6 @@
                         if (new_value.result === this.date_type_label_list[i]) {
                             this.date_type = this.date_type_list[i];
                             this.update_key++;
-                            console.log(this.date_type);
                             break;
                         }
                     }
@@ -233,6 +264,10 @@
                 let num_max = parseInt(this.rich_max);
 
                 if (num_min < num_max) {
+                    /**
+                     * 更新问卷具体内容
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         information: this.information,
                         content: {
@@ -247,6 +282,10 @@
                 let num_max = parseInt(new_value);
 
                 if (num_max > num_min) {
+                    /**
+                     * 更新问卷具体内容
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         information: this.information,
                         content: {
@@ -263,6 +302,10 @@
             }
         },
         methods: {
+            /**
+             * 显示更多设置的modal
+             * @private
+             */
             showModal() {
                 this.$refs.modal.show();
             }

@@ -30,13 +30,22 @@
         name: "QuasMarkdownText",
         components: {QuasSettingModal},
         props: {
+            /**
+             * 是否可编辑
+             */
             editable: {
                 type: Boolean,
                 default: false
             },
+            /**
+             * 非编辑模式下用于渲染的markdown文本
+             */
             markdown: {
                 type: String
             },
+            /**
+             * 编辑模式下的文本内容
+             */
             value: {
                 type: String
             }
@@ -55,6 +64,11 @@
             }
         },
         methods: {
+            /**
+             * 打开插入多媒体modal
+             * @param type 多媒体类型，包括pic(图片)，voc(声音)和视频
+             * @private
+             */
             insertMultiMedia(type) {
                 this.modal_type = type;
                 this.path = "资源路径...";
@@ -71,6 +85,10 @@
 
                 this.$refs.modal.show();
             },
+            /**
+             * 将多媒体内容插入至markdown中
+             * @private
+             */
             upload() {
                 this.$refs.modal.close();
 
@@ -97,6 +115,10 @@
         },
         watch: {
             content(new_value) {
+                /**
+                 * 更新markdown文本的修改
+                 * @event{oninput}
+                 */
                 this.$emit("input", new_value);
             }
         }

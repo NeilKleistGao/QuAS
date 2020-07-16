@@ -15,19 +15,24 @@
     export default {
         name: "QuasSortItem",
         props: {
+            /**
+             * 是否可编辑
+             */
             editable: {
                 type: Boolean,
                 default: false
             },
+            /**
+             * 排序选项提示文本，仅在非可编辑下使用
+             */
             label: {
                 type: String
             },
+            /**
+             * 编辑模式下提示文本
+             */
             value: {
                 type: String
-            },
-            index: {
-                type: Number,
-                default: -1
             }
         },
         data() {
@@ -37,6 +42,10 @@
         },
         watch: {
             text(new_value) {
+                /**
+                 * 更新文本内容
+                 * @event{oninput}
+                 */
                 this.$emit("input", new_value);
             }
         }

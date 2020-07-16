@@ -9,6 +9,7 @@
                     </div>
                     <hr/>
                     <div class="quas-modal-content">
+                        <!-- modal内显示内容slot -->
                         <slot name="content"/>
                     </div>
                 </div>
@@ -22,6 +23,9 @@
     export default {
         name: "QuasSettingModal",
         props: {
+            /**
+             * modal标题
+             */
             title: {
                 type: String,
                 default: ""
@@ -34,9 +38,17 @@
             };
         },
         methods: {
+            /**
+             * 关闭modal
+             * @public
+             */
             close() {
                 this.visible = false;
             },
+            /**
+             * 显示modal
+             * @public
+             */
             show() {
                 this.visible = true;
                 this.update_key++;
