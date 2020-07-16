@@ -281,7 +281,7 @@ input[type="number"] {
 .quas-dropdown button {
     border: none;
     border-bottom: 1px solid black;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0);
     min-width: 120px;
     transition: all 0.3s;
 }

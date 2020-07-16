@@ -22,7 +22,7 @@
             <quas-text-box v-else-if="type === 'text'" v-model="result.result"/>
         </div>
 
-        <quas-setting-modal ref="modal" title="高级设置" :key="update_key">
+        <quas-setting-modal ref="modal" title="高级设置" :key="update_key" v-if="editable">
             <template slot="content">
                 <div v-if="type === 'check'">
                     <quas-text-box label="最少需要选择：" :reg="/^\d+$/" v-model="check_min"/>

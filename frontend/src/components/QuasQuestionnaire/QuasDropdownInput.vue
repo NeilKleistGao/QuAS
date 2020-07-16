@@ -2,10 +2,12 @@
     <div>
         <i class="iconfont icon-xiajiantou"></i>
         <div class="quas-dropdown">
-            <button v-if="result === ''" @click="fold">{{placeholder}}</button>
-            <button v-else @click="fold">{{result}}</button>
+            <div @blur.capture="fold(false)">
+                <button v-if="result === ''" @click="fold">{{placeholder}}</button>
+                <button v-else @click="fold">{{result}}</button>
+            </div>
             <div class="quas-dropdown-content" :style="{display: content_display}">
-                <a href="#" v-for="item in items" :key="item" @click="select(item)">{{item}}</a>
+                <a v-for="item in items" :key="item" @click="select(item)">{{item}}</a>
             </div>
         </div>
     </div>
@@ -15,14 +17,23 @@
     export default {
         name: "QuasDropdownInput",
         props: {
+            /**
+             * 下拉选项的选择结果
+             */
             value: {
                 type: String,
                 required: true
             },
+            /**
+             * 默认的占位符
+             */
             placeholder: {
                 type: String,
                 default: "..."
             },
+            /**
+             * 备选选项列表
+             */
             items: {
                 type: Array,
                 required: true
@@ -36,10 +47,20 @@
             };
         },
         methods: {
+            /**
+             * 更新所选选项
+             * @param new_value 新的选项值
+             * @private
+             */
             select(new_value) {
                 this.result = new_value;
                 this.fold(false);
             },
+            /**
+             * 更新下拉框的折叠状态
+             * @param inv true表示展开下拉框，false表示将其折叠
+             * @private
+             */
             fold(inv = true) {
                 if (inv) {
                     this.visible = !this.visible;
@@ -59,6 +80,10 @@
         },
         watch: {
             result(new_value) {
+                /**
+                 * 更新选项内容
+                 * @event{oninput}
+                 */
                 this.$emit("input", new_value);
             }
         }

@@ -21,18 +21,30 @@
         name: "QuasDropdown",
         components: {QuasDropdownInput, QuasDropdownTree},
         props: {
+            /**
+             * 是否可编辑
+             */
             editable: {
                 type: Boolean,
                 default: false
             },
+            /**
+             * 非可编辑状态下为包含结果的results数组；可编辑状态下为小标题数组labels和选项数组items
+             */
             value: {
                 type: Object,
                 required: true
             },
+            /**
+             * 下拉选项框的默认占位符
+             */
             placeholder: {
                 type: String,
                 default: "..."
             },
+            /**
+             * 非可编辑状态下的题目数据
+             */
             contents: {
                 type: Object,
                 default: null
@@ -49,6 +61,12 @@
             };
         },
         methods: {
+            /**
+             * 加载当前下拉选项框的备选选项
+             * @param index 当前下拉选项框的下标
+             * @returns {[]} 备选选项数组
+             * @private
+             */
             getOptions(index) {
                 let res = [];
                 let len = this.contents.items.length;
@@ -81,6 +99,10 @@
 
                 return res;
             },
+            /**
+             * 更新当前下拉选框的选项
+             * @param index 当前下拉选框的下标
+             */
             modify(index) {
                 if (this.result[index] != this.previous_result[index]) {
                     this.previous_result[index] = this.result[index];
@@ -99,6 +121,10 @@
                         }
                     }
 
+                    /**
+                     * 更新所选内容
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         result: this.result
                     });
@@ -110,6 +136,10 @@
         watch: {
             items: {
                 handler(new_value) {
+                    /**
+                     * 可编辑状态下更新选项内容
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         labels: this.labels,
                         items: new_value
@@ -119,7 +149,6 @@
             }
         },
         beforeMount() {
-            console.log(this.items);
             if (!this.editable) {
                 for (let item of this.result) {
                     this.previous_result.push(item);

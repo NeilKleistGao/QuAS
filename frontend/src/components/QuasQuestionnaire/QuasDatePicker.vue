@@ -15,22 +15,37 @@
     export default {
         name: "QuasDatePicker",
         props: {
+            /**
+             * 日期选择类型，可选值包括date, week, month, time
+             */
             type: {
                 type: String,
                 required: true
             },
+            /**
+             * 日期选择结果，范围选择包括两个值begin和end
+             */
             value: {
                 type: Object,
                 required: true
             },
+            /**
+             * 最早可以选择的日期，如果为空则表示不设下限
+             */
             min: {
                 type: String,
                 default: ""
             },
+            /**
+             * 最晚可以选择的日期，如果为空则表示不设上限
+             */
             max: {
                 type: String,
                 default: ""
             },
+            /**
+             * 是否为范围选择，默认为否
+             */
             range: {
                 type: Boolean,
                 default: false
@@ -49,12 +64,20 @@
         },
         watch: {
             result(new_value) {
+                /**
+                 * 更新所选日期
+                 * @event{oninput}
+                 */
                 this.$emit("input", {
                     result: new_value
                 });
             },
             range_result: {
                 handler(new_value) {
+                    /**
+                     * 更新所选范围
+                     * @event{oninput}
+                     */
                     this.$emit("input", {
                         result: new_value
                     });
