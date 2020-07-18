@@ -42,6 +42,7 @@ textarea {
     display: inline-block;
     vertical-align: middle;
     border: 1px solid var(--primary);
+    background-color: white;
 }
 
 .quas-radio:after {
@@ -107,10 +108,10 @@ li > .quas-design-text {
 
 .quas-operation-button {
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     background-color: white;
     color: black;
-    padding: 1px 2px 4px 2px;
+    padding: 1px 10px 4px 10px;
     margin: 20px 5px auto 5px;
     border: 1px solid var(--primary);
     transition: 0.4s;
@@ -331,6 +332,7 @@ input[type="number"] {
     margin: auto;
     background-color: white;
     z-index: 998;
+    border-radius: 5px;
 }
 
 .quas-modal-content {
@@ -360,4 +362,9 @@ input[type="number"] {
 .quas-setting-button:hover {
     color: var(--primary);
     opacity: 100%;
+}
+
+.quas-design-grid {
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
 }

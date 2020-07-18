@@ -5,7 +5,8 @@
 
         <div class="quas-design-container">
             <div class="quas-design-header">
-                <quas-text-box label="问卷标题："/>
+                <h2 style="display: inline-block">问卷标题：</h2>
+                <quas-text-box style="display: inline-block"/>
                 <br/>
             </div>
 

@@ -3,7 +3,7 @@
         <div v-if="!editable">
             <quas-radio class="quas-list-item"
                         v-for="label in items.labels"
-                        :name="name" :text="label"
+                        :name="name" :label="label"
                         :key="label"
                         v-model="result"/>
         </div>

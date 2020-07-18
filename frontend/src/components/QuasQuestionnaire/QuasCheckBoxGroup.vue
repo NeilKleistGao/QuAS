@@ -4,7 +4,7 @@
             <quas-check-box class="quas-list-item"
                             v-for="(label, index) in items.labels"
                             :key="label"
-                            :text="label"
+                            :label="label"
                             v-model="result"
                             :selectable="selectable_list[index]"/>
         </div>

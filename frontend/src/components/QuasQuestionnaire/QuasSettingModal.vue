@@ -4,7 +4,7 @@
             <div v-if="visible" :key="update_key">
                 <div class="quas-setting-modal">
                     <div>
-                        <h4>{{title}}</h4>
+                        <h3 style="margin-left: 10px">{{title}}</h3>
                         <i class="iconfont icon-guanbi" @click="close"/>
                     </div>
                     <hr/>
