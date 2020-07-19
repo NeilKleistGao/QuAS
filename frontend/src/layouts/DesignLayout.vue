@@ -93,8 +93,9 @@
                         content: {
                             type: "date",
                             range: false,
-                            min: "",
-                            max: ""
+                            limit: false,
+                            min: "2020-01-01",
+                            max: "2020-01-01"
                         }
                     };
                 }

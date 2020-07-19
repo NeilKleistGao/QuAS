@@ -89,7 +89,10 @@
                                 labels: ["题目1"],
                                 items: [{
                                     level: 0,
-                                    label: "选项"
+                                    label: "选项1"
+                                },{
+                                    level: 0,
+                                    label: "选项2"
                                 }]
                             }
                         }
@@ -114,7 +117,7 @@
                         result: []
                     },
                     {
-                        result: ""
+                        result: "2020-09-23"
                     },
                     {
                         result: ""

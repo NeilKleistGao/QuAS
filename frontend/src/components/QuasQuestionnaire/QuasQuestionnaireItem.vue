@@ -26,9 +26,12 @@
                     <quas-radio-group name="radio_type" :items="date_type_label_list" v-model="date_type_res"/>
                     <br/>
                     <quas-check-box v-if="type != 'none'" :editable="false" label="范围选择"/>
-                    <br/>
-                    <label>有效日期范围：</label>
-                    <quas-date-picker :range="true" :type="date_type" v-model="date_range"/>
+                    <quas-check-box :editable="false" label="限制有效日期范围"/>
+                    <div v-if="content.limit">
+                        <br/>
+                        <label>有效日期范围：</label>
+                        <quas-date-picker :range="true" :type="date_type" v-model="date_range"/>
+                    </div>
                 </div>
                 <div v-else-if="type === 'rich'">
                     <label>最少字数：</label>

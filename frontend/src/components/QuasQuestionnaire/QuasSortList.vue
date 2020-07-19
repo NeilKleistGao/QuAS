@@ -137,7 +137,6 @@
              */
             dragEnd() {
                 this.result = this.exchange(this.result, this.drag_old_index, this.drag_new_index);
-                console.log(this.result);
                 this.update_key++;
             }
         },

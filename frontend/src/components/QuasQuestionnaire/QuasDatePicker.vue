@@ -5,7 +5,7 @@
         </div>
         <div v-else>
             <input :type="type" v-model="range_result.begin" :min="min" :max="first_max" class="quas-date-picker"/>
-            <label>-</label>
+            <label>~</label>
             <input :type="type" v-model="range_result.end" :min="last_min" :max="max" class="quas-date-picker"/>
         </div>
     </div>

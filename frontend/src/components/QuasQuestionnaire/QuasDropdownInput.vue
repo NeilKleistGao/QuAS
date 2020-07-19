@@ -1,15 +1,13 @@
 <template>
-    <div>
-        <i class="iconfont icon-xiajiantou"></i>
-        <div class="quas-dropdown">
-            <div @blur.capture="fold(false)">
-                <button v-if="result === ''" @click="fold">{{placeholder}}</button>
-                <button v-else @click="fold">{{result}}</button>
-            </div>
-            <div class="quas-dropdown-content" :style="{display: content_display}">
-                <a v-for="item in items" :key="item" @click="select(item)">{{item}}</a>
-            </div>
+    <div style="margin-top: 10px">
+        <i class="iconfont icon-xiajiantou" style="display:inline-block;"></i>
+        <div class="quas-dropdown" style="display: inline-block">
+
+            <select v-model="result">
+                <option v-for="item in items" :key="item" :value="item">{{item}}</option>
+            </select>
         </div>
+
     </div>
 </template>
 

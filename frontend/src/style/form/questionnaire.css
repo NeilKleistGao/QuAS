@@ -12,6 +12,10 @@ input[type="radio"], input[type="checkbox"] {
     cursor: pointer;
 }
 
+input::-webkit-calendar-picker-indicator {
+    background-color: rgba(0, 0, 0, 0);
+}
+
 ul, li {
     list-style: none;
 }
@@ -204,10 +208,11 @@ input[type="number"] {
     margin-top: 1rem;
     transition: 0.5s;
     -webkit-transition: 0.5s;
+    outline: none;
 }
 
 .quas-rich-text {
-    border: 1px solid var(--primary);
+    border: 1px solid black;
 }
 
 .quas-overflow-rich {
@@ -266,40 +271,30 @@ input[type="number"] {
 }
 
 .quas-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.quas-dropdown-content {
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 120px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    margin-top: 0.1rem;
-    z-index: 999;
-}
-
-.quas-dropdown button {
+    width: 80px;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 0.3s;
+    padding: 5px;
+    vertical-align: middle;
     border: none;
     border-bottom: 1px solid black;
-    background-color: rgba(0, 0, 0, 0);
-    min-width: 120px;
-    transition: all 0.3s;
 }
 
-.quas-dropdown:hover button {
+.quas-dropdown:hover  {
     border-bottom: 1px solid var(--primary);
 }
 
-.quas-dropdown-content a {
-    color: black;
-    text-decoration: none;
-    display: block;
-    padding: 12px 16px;
+.quas-dropdown > select {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-appearance: none;
+    min-width: 80px;
+    outline: none;
 }
 
-.quas-dropdown-content a:hover {
-    background-color: #f1f1f1;
+.quas-dropdown > select > option {
+    border: none;
+    outline: none;
 }
 
 .quas-dropdown-grid {
