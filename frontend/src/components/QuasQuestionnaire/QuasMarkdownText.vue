@@ -48,6 +48,13 @@
              */
             value: {
                 type: String
+            },
+            /**
+             * 是否为选填项，默认为否
+             */
+            nullable: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -60,7 +67,13 @@
         },
         computed: {
             compileMarkdown() {
-                return marked(this.markdown, { sanitize: true });
+                if (this.nullbale) {
+                    return marked(this.markdown, { sanitize: true });
+                }
+                else {
+                    return marked(this.markdown + "*", { sanitize: true });
+                }
+
             }
         },
         methods: {

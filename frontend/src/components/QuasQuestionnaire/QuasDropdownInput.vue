@@ -1,6 +1,6 @@
 <template>
     <div style="margin-top: 10px">
-        <i class="iconfont icon-xiajiantou" style="display:inline-block;"></i>
+        <i v-if="!hidden_icon" class="iconfont icon-xiajiantou" style="display:inline-block;"></i>
         <div class="quas-dropdown" style="display: inline-block">
 
             <select v-model="result">
@@ -23,18 +23,15 @@
                 required: true
             },
             /**
-             * 默认的占位符
-             */
-            placeholder: {
-                type: String,
-                default: "..."
-            },
-            /**
              * 备选选项列表
              */
             items: {
                 type: Array,
                 required: true
+            },
+            hidden_icon: {
+                type: Boolean,
+                default: false
             }
         },
         data() {

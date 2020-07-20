@@ -4,7 +4,7 @@
             <div>
                 <quas-markdown-text v-model="information" :editable="editable" :markdown="information"/>
                 <br/>
-                <quas-check-box v-if="type != 'none'" :editable="false" label="选做"/>
+                <quas-check-box v-if="type !== 'none'" :editable="false" label="选做" v-model="nullable_list"/>
                 <br/>
 
                 <div v-if="type === 'check'">
@@ -25,7 +25,7 @@
                     <label>日期选择类型：</label>
                     <quas-radio-group name="radio_type" :items="date_type_label_list" v-model="date_type_res"/>
                     <br/>
-                    <quas-check-box v-if="type != 'none'" :editable="false" label="范围选择"/>
+                    <quas-check-box v-if="type !== 'none'" :editable="false" label="范围选择"/>
                     <quas-check-box :editable="false" label="限制有效日期范围"/>
                     <div v-if="content.limit">
                         <br/>
@@ -56,6 +56,17 @@
                 <quas-sort-list v-else-if="type === 'sort'" :editable="editable" v-model="content"/>
             </div>
 
+            <div style="margin-top: -48px">
+                <quas-linker label="默认跳转：" :items="problems_list"/>
+                <br/>
+                <div v-if="type === 'radio'">
+                    <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中跳转：" :items="problems_list"/>
+                </div>
+                <div v-if="type === 'check'">
+                    <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中添加：" :items="problems_list"/>
+                </div>
+            </div>
+
         </div>
         <div v-else>
             <quas-markdown-text :editable="editable" :markdown="questionnaire.information"/>
@@ -81,9 +92,11 @@
     import QuasSortList from "@/components/QuasQuestionnaire/QuasSortList";
     import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
     import QuasCheckBox from "@/components/QuasQuestionnaire/QuasCheckBox";
+    import QuasLinker from "@/components/QuasQuestionnaire/QuasLinker";
     export default {
         name: "QuasQuestionnaireItem",
         components: {
+            QuasLinker,
             QuasCheckBox,
             QuasTextBox,
             QuasSortList,
@@ -115,6 +128,10 @@
              */
             questionnaire: {
                 type: Object
+            },
+            problems_list: {
+                type: Array,
+                required: true
             }
         },
         data() {
@@ -158,7 +175,8 @@
                 text_type_res: {
                     result: "文本"
                 },
-                text_reg: ""
+                text_reg: "",
+                nullable_list: []
             };
         },
         watch: {
@@ -304,6 +322,22 @@
                         }
                     });
                 }
+            },
+            nullable_list: {
+                handler(new_value) {
+                    let content = this.content;
+                    content["nullable"] = (new_value.length === 0);
+
+                    /**
+                     * 更新问卷具体内容
+                     * @event{oninput}
+                     */
+                    this.$emit("input", {
+                        information: this.information,
+                        content: content
+                    })
+                },
+                deep: true
             }
         },
         computed: {
@@ -319,6 +353,9 @@
             showModal() {
                 this.$refs.modal.show();
             }
+        },
+        beforeMount() {
+            //TODO:
         }
     }
 </script>

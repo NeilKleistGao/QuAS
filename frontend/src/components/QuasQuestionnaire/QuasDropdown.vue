@@ -36,13 +36,6 @@
                 required: true
             },
             /**
-             * 下拉选项框的默认占位符
-             */
-            placeholder: {
-                type: String,
-                default: "..."
-            },
-            /**
              * 非可编辑状态下的题目数据
              */
             contents: {

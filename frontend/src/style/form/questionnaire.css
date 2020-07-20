@@ -361,5 +361,23 @@ input[type="number"] {
 
 .quas-design-grid {
     display: grid;
-    grid-template-columns: 40% 40% 20%;
+    grid-template-columns: 40% 35% 25%;
+}
+
+.quas-hollow-circle {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+}
+
+.quas-horizontal-line {
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    border-top: 2px solid var(--primary);
+    position: relative;
+    top: -4px
 }

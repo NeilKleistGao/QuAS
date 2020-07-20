@@ -13,6 +13,11 @@
                     <br/>
                 </div>
             </div>
+
+            <br/>
+            <div style="text-align: center">
+                <button class="quas-submit-button">提交问卷</button>
+            </div>
         </div>
         <br/>
     </div>

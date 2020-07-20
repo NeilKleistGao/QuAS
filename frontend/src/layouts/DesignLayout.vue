@@ -13,10 +13,20 @@
             <div v-for="(item, index) in questionnaire" :key="index">
                 <div style="margin-left: 20px">
                     <h4 style="margin-left: 40px">第{{index + 1}}题</h4>
-                    <quas-questionnaire-item style="margin-left: 80px" class="quas-ques-item" :type="item.type" v-model="item.data" :editable="true"/>
+                    <quas-questionnaire-item style="margin-left: 80px"
+                                             class="quas-ques-item"
+                                             :type="item.type"
+                                             v-model="item.data"
+                                             :editable="true"
+                                            :problems_list="getProblemsList"/>
                 </div>
                 <br/>
             </div>
+
+            <div style="text-align: center">
+                <button class="quas-submit-button">保存修改</button>
+            </div>
+
         </div>
     </div>
 </template>
@@ -55,7 +65,8 @@
                     new_item["data"] = {
                         information: "单选题",
                         content: {
-                            labels: ["选项"]
+                            labels: ["选项"],
+                            nullable: false
                         }
                     };
                 }
@@ -65,7 +76,8 @@
                         content: {
                             labels: ["选项"],
                             min: 0,
-                            max: 1
+                            max: 1,
+                            nullable: false
                         }
                     };
                 }
@@ -74,7 +86,8 @@
                         information: "填空题",
                         content: {
                             type: "text",
-                            reg: null
+                            reg: null,
+                            nullable: false
                         }
                     };
                 }
@@ -83,7 +96,8 @@
                         information: "多行文本",
                         content: {
                             min: 0,
-                            max: 999
+                            max: 999,
+                            nullable: false
                         }
                     };
                 }
@@ -95,7 +109,8 @@
                             range: false,
                             limit: false,
                             min: "2020-01-01",
-                            max: "2020-01-01"
+                            max: "2020-01-01",
+                            nullable: false
                         }
                     };
                 }
@@ -106,8 +121,9 @@
                             labels: ["标题", "标题", "标题", "标题", "标题", "标题"],
                             items: [{
                                 label: "选项",
-                                level: 0
-                            }]
+                                level: 0,
+                            }],
+                            nullable: false
                         }
                     };
                 }
@@ -115,7 +131,8 @@
                     new_item["data"] = {
                         information: "排序题",
                         content: {
-                            labels: ["选项"]
+                            labels: ["选项"],
+                            nullable: false
                         }
                     };
                 }
@@ -138,6 +155,19 @@
                     console.log(new_value);
                 },
                 deep: true
+            }
+        },
+        computed: {
+            getProblemsList() {
+                let res = [];
+
+                res.push("下一题");
+                for (let i = 0; i < this.questionnaire.length; i++) {
+                    res.push("第" + (i + 1).toString() + "题");
+                }
+                res.push("结束");
+
+                return res;
             }
         }
     }
