@@ -18,7 +18,7 @@
                                              :type="item.type"
                                              v-model="item.data"
                                              :editable="true"
-                                            :problems_list="getProblemsList"/>
+                                            :problems_list="getProblemsList(index + 1)"/>
                 </div>
                 <br/>
             </div>
@@ -49,9 +49,9 @@
                         type: "none",
                         data: {
                             information: "开始设计您的问卷",
-                            content: null
+                            content: null,
+                            next: 0
                         }
-
                     }
                 ]
             };
@@ -66,8 +66,10 @@
                         information: "单选题",
                         content: {
                             labels: ["选项"],
-                            nullable: false
-                        }
+                            nullable: false,
+                            next: [0]
+                        },
+                        next: 0
                     };
                 }
                 else if (label === "check") {
@@ -77,8 +79,9 @@
                             labels: ["选项"],
                             min: 0,
                             max: 1,
-                            nullable: false
-                        }
+                            nullable: false,
+                        },
+                        next: 0
                     };
                 }
                 else if (label === "text") {
@@ -88,7 +91,8 @@
                             type: "text",
                             reg: null,
                             nullable: false
-                        }
+                        },
+                        next: 0
                     };
                 }
                 else if (label === "rich") {
@@ -98,7 +102,8 @@
                             min: 0,
                             max: 999,
                             nullable: false
-                        }
+                        },
+                        next: 0
                     };
                 }
                 else if (label === "date") {
@@ -111,7 +116,8 @@
                             min: "2020-01-01",
                             max: "2020-01-01",
                             nullable: false
-                        }
+                        },
+                        next: 0
                     };
                 }
                 else if (label === "drop") {
@@ -124,7 +130,8 @@
                                 level: 0,
                             }],
                             nullable: false
-                        }
+                        },
+                        next: 0
                     };
                 }
                 else if (label === "sort") {
@@ -133,13 +140,15 @@
                         content: {
                             labels: ["选项"],
                             nullable: false
-                        }
+                        },
+                        next: 0
                     };
                 }
                 else if (label === "none") {
                     new_item["data"] = {
                         information: "文本说明",
-                        content: null
+                        content: null,
+                        next: 0
                     };
                 }
                 else {
@@ -147,29 +156,29 @@
                 }
 
                 this.questionnaire.push(new_item);
-            }
-        },
-        watch: {
-            questionnaire: {
-                handler(new_value) {
-                    console.log(new_value);
-                },
-                deep: true
-            }
-        },
-        computed: {
-            getProblemsList() {
+            },
+            getProblemsList(index) {
                 let res = [];
 
                 res.push("下一题");
-                for (let i = 0; i < this.questionnaire.length; i++) {
-                    res.push("第" + (i + 1).toString() + "题");
+                for (let i = index + 1; i <= this.questionnaire.length; i++) {
+                    res.push("第" + i.toString() + "题");
                 }
                 res.push("结束");
 
+                console.log(index.toString() + ":" + res);
+
                 return res;
             }
-        }
+        },
+        // watch: {
+        //     questionnaire: {
+        //         handler(new_value) {
+        //             console.log(new_value);
+        //         },
+        //         deep: true
+        //     }
+        // }
     }
 </script>
 

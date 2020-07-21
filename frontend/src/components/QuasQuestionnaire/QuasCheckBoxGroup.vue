@@ -140,7 +140,7 @@
                 this.$emit("input", {
                     labels: new_value,
                     min: this.value.min,
-                    max: this.value.max
+                    max: this.value.max,
                 })
             }
         },

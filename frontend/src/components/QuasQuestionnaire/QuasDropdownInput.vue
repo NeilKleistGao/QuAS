@@ -29,6 +29,9 @@
                 type: Array,
                 required: true
             },
+            /**
+             * 是否隐藏默认图标
+             */
             hidden_icon: {
                 type: Boolean,
                 default: false

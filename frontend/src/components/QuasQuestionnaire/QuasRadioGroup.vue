@@ -62,6 +62,7 @@
             return {
                 result: this.value.result,
                 labels: this.value.labels,
+                next: this.value.next,
                 update_key: 0,
                 drag_new_index: 0,
                 drag_old_index: 0
@@ -75,6 +76,7 @@
              */
             erase(index) {
                 if (this.labels[index] === "") {
+                    this.next.splice(index, 1);
                     this.labels.splice(index, 1);
                     this.update_key++;
                 }
@@ -84,6 +86,7 @@
              * @private
              */
             push() {
+                this.next.push(0);
                 this.labels.push("new item");
                 this.update_key++;
             },
@@ -122,9 +125,13 @@
             },
             labels(new_value) {
                 this.$emit("input", {
-                    labels: new_value
+                    labels: new_value,
+                    next: this.next
                 })
             }
+        },
+        beforeMount() {
+            console.log(typeof(this.result));
         }
     }
 </script>

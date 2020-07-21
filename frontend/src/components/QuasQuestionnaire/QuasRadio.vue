@@ -54,7 +54,7 @@
              * 更新选择状态
              */
             updateSelect() {
-                this.selected_text = this.text;
+                this.selected_text = this.label;
                 /**
                  * 更新选中结果
                  * @event{oninput}

@@ -57,13 +57,12 @@
             </div>
 
             <div style="margin-top: -48px">
-                <quas-linker label="默认跳转：" :items="problems_list"/>
+                <quas-linker v-if="type !== 'radio'" label="默认跳转：" :items="problems_list" v-model="next"/>
+                <div v-if="type === 'radio'" style="margin-top: 28px">
+                </div>
                 <br/>
                 <div v-if="type === 'radio'">
-                    <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中跳转：" :items="problems_list"/>
-                </div>
-                <div v-if="type === 'check'">
-                    <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中添加：" :items="problems_list"/>
+                    <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中跳转：" :items="problems_list" v-model="content.next[index]"/>
                 </div>
             </div>
 
@@ -129,15 +128,18 @@
             questionnaire: {
                 type: Object
             },
+            /**
+             * 可跳转页面列表
+             */
             problems_list: {
-                type: Array,
-                required: true
+                type: Array
             }
         },
         data() {
             return {
                 content: this.value.content,
                 information: this.value.information,
+                next: this.value.next,
                 result: this.value,
                 more_settings_type: ["check", "date", "drop", "rich", "text"],
                 check_max: "1",
@@ -187,7 +189,8 @@
                  */
                 this.$emit("input", {
                     information: new_value,
-                    content: this.content
+                    content: this.content,
+                    next: this.next
                 });
             },
             result: {
@@ -224,7 +227,8 @@
                      */
                     this.$emit("input", {
                         information: this.information,
-                        content: new_value
+                        content: new_value,
+                        next: this.next
                     });
                 },
                 deep: true
@@ -243,7 +247,8 @@
                         content: {
                             labels: this.content.labels,
                             max: num_max,
-                            min: num_min
+                            min: num_min,
+                            next: this.content.next
                         }
                     });
                 }
@@ -263,7 +268,8 @@
                         content: {
                             labels: this.content.labels,
                             max: num_max,
-                            min: num_min
+                            min: num_min,
+                            next: this.content.next
                         }
                     });
                 }
@@ -355,7 +361,6 @@
             }
         },
         beforeMount() {
-            //TODO:
         }
     }
 </script>

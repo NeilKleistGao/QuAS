@@ -4,7 +4,7 @@
             <div v-for="(enable, index) in labels_enable" :key="index">
                 <div v-if="enable">
                     <label>{{contents.labels[index]}}</label>
-                    <quas-dropdown-input :placeholder="placeholder" v-model="result[index]" :items="getOptions(index)" :index="index" @click.native="modify(index)"/>
+                    <quas-dropdown-input v-model="result[index]" :items="getOptions(index)" :index="index" @click.native="modify(index)"/>
                 </div>
             </div>
         </div>
