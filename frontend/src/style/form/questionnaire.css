@@ -203,8 +203,8 @@ input[type="number"] {
 }
 
 .quas-rich-text, .quas-overflow-rich {
-    width: 450px;
-    height: 200px;
+    width: 80%;
+    height: 100px;
     margin-top: 1rem;
     transition: 0.5s;
     -webkit-transition: 0.5s;

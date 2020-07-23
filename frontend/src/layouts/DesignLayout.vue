@@ -171,14 +171,12 @@
                 return res;
             }
         },
-        // watch: {
-        //     questionnaire: {
-        //         handler(new_value) {
-        //             console.log(new_value);
-        //         },
-        //         deep: true
-        //     }
-        // }
+        beforeMount() {
+            let platform = require("../utils/platform");
+            if (!platform.isPC()) {
+                alert("请在电脑端完成编辑");
+            }
+        }
     }
 </script>
 

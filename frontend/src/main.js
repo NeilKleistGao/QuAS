@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from "@/router";
 
 import "./style/quas.css";
+import "./utils/rem"
 
 Vue.config.productionTip = false
 

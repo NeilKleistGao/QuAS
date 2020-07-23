@@ -1,15 +1,15 @@
 <template>
     <div>
-        <quas-nav :labels="nav_labels" :links="nav_links"/>
+        <quas-nav :labels="nav_labels" :links="nav_links" class="quas-nav-bar-mobile"/>
 
-        <div class="quas-fill-container">
-            <h1 class="quas-fill-header">{{title}}</h1>
+        <div class="quas-fill-container-mobile">
+            <h1 class="quas-fill-header-mobile">{{title}}</h1>
             <br/>
 
             <div v-for="(link, index) in showing" :key="update_key.toString() + '-' + index.toString()">
                 <div style="margin-left: 20px; width: 60%">
                     <h4 style="margin-left: 40px">第{{index + 1}}题</h4>
-                    <quas-questionnaire-item style="margin-left: 80px"
+                    <quas-questionnaire-item style="margin-left: 80px; font-size: 12px"
                                              class="quas-ques-item"
                                              :type="questionnaire[link].type"
                                              :questionnaire="questionnaire[link].data"
@@ -31,14 +31,13 @@
 <script>
     import QuasNav from "@/components/QuasWebUI/QuasNav";
     import QuasQuestionnaireItem from "@/components/QuasQuestionnaire/QuasQuestionnaireItem";
-
     export default {
         name: "FillLayout",
         components: {QuasQuestionnaireItem, QuasNav},
         data() {
             return {
-                nav_labels: ["问卷设计测试", "问卷填写测试"],
-                nav_links: ["#/questionnaire/design/3154", "#/questionnaire/fill/3154"],
+                nav_labels: [],
+                nav_links: [],
                 title: "关于问卷测试的问卷调查",
                 questionnaire: [
                     {
@@ -190,11 +189,6 @@
             }
         },
         beforeMount() {
-            let platform = require("../utils/platform");
-            if (!platform.isPC()) {
-                window.location.href = "#/questionnaire/mobile_fill/3154";
-            }
-
             this.unfold(0, -1);
             this.copyBackup();
         },
@@ -234,5 +228,7 @@
 </script>
 
 <style scoped>
-
+    h4 {
+        font-size: 12px;
+    }
 </style>

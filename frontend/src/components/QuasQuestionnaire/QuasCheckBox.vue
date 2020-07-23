@@ -86,7 +86,6 @@
     @import "../../style/form/questionnaire.css";
 
     label, input[type="text"] {
-        font-size: 16px;
         position: relative;
         top: -6px;
     }
