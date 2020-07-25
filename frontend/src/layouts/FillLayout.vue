@@ -37,8 +37,8 @@
         components: {QuasQuestionnaireItem, QuasNav},
         data() {
             return {
-                nav_labels: ["问卷设计测试", "问卷填写测试"],
-                nav_links: ["#/questionnaire/design/3154", "#/questionnaire/fill/3154"],
+                nav_labels: ["问卷设计测试", "问卷填写测试", "问卷结果测试"],
+                nav_links: ["#/questionnaire/design/3154", "#/questionnaire/fill/3154", "#/questionnaire/result/3154"],
                 title: "关于问卷测试的问卷调查",
                 questionnaire: [
                     {
