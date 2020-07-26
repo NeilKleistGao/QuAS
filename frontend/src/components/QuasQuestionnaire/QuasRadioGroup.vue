@@ -119,11 +119,19 @@
         },
         watch: {
             result(new_value) {
+                /**
+                 * 更新选中结果
+                 * @event{oninput}
+                 */
                 this.$emit("input", {
                     result: new_value
                 });
             },
             labels(new_value) {
+                /**
+                 * 更新标签文本
+                 * @event{oninput}
+                 */
                 this.$emit("input", {
                     labels: new_value,
                     next: this.next

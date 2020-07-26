@@ -2,6 +2,15 @@ nav {
     background-color: var(--secondary);
 }
 
+th, td {
+    overflow: hidden;
+    text-align: center;
+}
+
+td {
+    font-weight: normal;
+}
+
 .quas-nav-band .quas-nav-bar {
     float: left;
 }
@@ -160,6 +169,31 @@ nav {
     margin-left: 5%;
     margin-right: auto;
     border-radius: 5px;
-    min-height: 450px;
+    min-height: 700px;
     text-align: left;
+}
+
+.quas-tab-slot {
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow: scroll;
+    height: 680px;
+}
+
+.quas-table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.quas-table > tbody > tr {
+    height: 64px;
+    transition: background-color 0.3s;
+}
+
+.quas-table > tbody > tr:hover {
+    background-color: var(--secondary);
+}
+
+.quas-table > tbody > tr > td {
+    border-top: 1px solid black;
 }

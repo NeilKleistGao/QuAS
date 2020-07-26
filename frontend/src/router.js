@@ -34,7 +34,7 @@ const routes = [
     },
     {
         path: "/",
-        redirect: "/questionnaire/design/3154"
+        redirect: "/questionnaire/result/3154"
     }
 ];
 

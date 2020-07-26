@@ -351,22 +351,10 @@
                 return this.more_settings_type.indexOf(this.type) > -1;
             }
         },
-        methods: {
-            /**
-             * 显示更多设置的modal
-             * @private
-             */
-            showModal() {
-                this.$refs.modal.show();
-            }
-        },
         beforeMount() {
         }
     }
 </script>
 
 <style scoped>
-    style {
-        display: inline-block;
-    }
 </style>
