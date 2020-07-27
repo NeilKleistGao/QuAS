@@ -1,3 +1,5 @@
+@import "animation.css";
+
 nav {
     background-color: var(--secondary);
 }
@@ -196,4 +198,14 @@ td {
 
 .quas-table > tbody > tr > td {
     border-top: 1px solid black;
+}
+
+.quas-loading-spin {
+    animation: loading-spin 2s linear 0.2s infinite;
+    margin-top: 20px;
+}
+
+.quas-loading-label {
+    display: block;
+    margin-top: 20px;
 }

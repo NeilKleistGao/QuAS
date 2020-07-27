@@ -11,12 +11,12 @@
                     <table class="quas-table">
                         <thead>
                             <tr>
-                                <th v-for="(item, index) in questionnaire" :key="index">{{getQuestionnaireTitle(item.type, item.data.information)}}</th>
+                                <th v-for="(item, index) in questionnaire" :key="'th' + index.toString()">{{getQuestionnaireTitle(item.type, item.data.information)}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(result, index) in results" :key="index">
-                                <td v-for="item in result" :key="item">
+                            <tr v-for="(result, index) in results" :key="'tr' + index.toString()">
+                                <td v-for="(item, index2) in result" :key="'td' + index2.toString()">
                                     {{getResult(item)}}
                                 </td>
                             </tr>
@@ -29,7 +29,22 @@
 
             </template>
             <template slot="统计图表">
-                <div>
+                <div class="quas-tab-slot">
+                    <div v-for="(item, index) in questionnaire" :key="'chart' + index.toString()" style="margin-bottom: 25px">
+                        <span>第{{index + 1}}题：{{item.data.information}}</span>
+
+                        <div v-if="item.type === 'radio'">
+                            <quas-loading-spin label="加载中" :width="48" :height="48" :typing="true" style="text-align: center"/>
+                        </div>
+                        <div v-else-if="item.type === 'check'">
+                            <quas-loading-spin label="加载中" :width="48" :height="48" :typing="true" style="text-align: center"/>
+                        </div>
+                        <div v-else-if="item.type === 'drop'">
+                            <quas-loading-spin label="加载中" :width="48" :height="48" :typing="true" style="text-align: center"/>
+                        </div>
+                        <span v-else>该类题目暂时不支持绘制统计图表</span>
+                        <hr/>
+                    </div>
 
                 </div>
             </template>
@@ -40,9 +55,10 @@
 <script>
     import QuasNav from "@/components/QuasWebUI/QuasNav";
     import QuasTab from "@/components/QuasWebUI/QuasTab";
+    import QuasLoadingSpin from "@/components/QuasWebUI/QuasLoadingSpin";
     export default {
         name: "ResultLayout",
-        components: {QuasTab, QuasNav},
+        components: {QuasLoadingSpin, QuasTab, QuasNav},
         data() {
             return {
                 nav_labels: ["问卷设计测试", "问卷填写测试", "问卷结果测试"],
