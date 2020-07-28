@@ -32,20 +32,23 @@
                 <div class="quas-tab-slot">
                     <div v-for="(item, index) in questionnaire" :key="'chart' + index.toString()" style="margin-bottom: 25px">
                         <span>第{{index + 1}}题：{{item.data.information}}</span>
+                        <br/>
 
                         <div v-if="item.type === 'radio'">
-                            <quas-loading-spin label="加载中" :width="48" :height="48" :typing="true" style="text-align: center"/>
+                            <quas-chart title="" :legend="legend" :name="'chart' + index.toString()" :series="getChartSeries(index)"/>
                         </div>
                         <div v-else-if="item.type === 'check'">
-                            <quas-loading-spin label="加载中" :width="48" :height="48" :typing="true" style="text-align: center"/>
+                            <quas-chart title="" :labels="item.data.content.labels" :legend="legend" :name="'chart' + index.toString()" :series="getChartSeries(index)"/>
+                        </div>
+                        <div v-else-if="item.type === 'sort'">
+
                         </div>
                         <div v-else-if="item.type === 'drop'">
-                            <quas-loading-spin label="加载中" :width="48" :height="48" :typing="true" style="text-align: center"/>
+
                         </div>
                         <span v-else>该类题目暂时不支持绘制统计图表</span>
                         <hr/>
                     </div>
-
                 </div>
             </template>
         </quas-tab>
@@ -55,10 +58,10 @@
 <script>
     import QuasNav from "@/components/QuasWebUI/QuasNav";
     import QuasTab from "@/components/QuasWebUI/QuasTab";
-    import QuasLoadingSpin from "@/components/QuasWebUI/QuasLoadingSpin";
+    import QuasChart from "@/components/QuasWebUI/QuasChart";
     export default {
         name: "ResultLayout",
-        components: {QuasLoadingSpin, QuasTab, QuasNav},
+        components: {QuasChart, QuasTab, QuasNav},
         data() {
             return {
                 nav_labels: ["问卷设计测试", "问卷填写测试", "问卷结果测试"],
@@ -79,7 +82,7 @@
                         data: {
                             information: "这是一个单选题",
                             content: {
-                                labels: ["选项１", "选项2", "选项3"],
+                                labels: ["选项1", "选项2", "选项3"],
                                 next: [3, 4, 5]
                             },
                             next: 0
@@ -90,7 +93,7 @@
                         data: {
                             information: "这是一个多选题",
                             content: {
-                                labels: ["选项１", "选项2", "选项3"]
+                                labels: ["选项1", "选项2", "选项3"]
                             },
                             next: -1
                         }
@@ -165,8 +168,11 @@
                 results: [
                     [{},{result: "选项1"},{result: ["选项1"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项1", "选项2", "选项3"]}],
                     [{},{result: "选项2"},{result: ["选项1", "选项2"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项1", "选项2", "选项3"]}],
-                    [{},{result: "选项2"},{result: ["选项1", "选项2", "选项3"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项1", "选项2", "选项3"]}]
-                ]
+                    [{},{result: "选项3"},{result: ["选项1", "选项2", "选项3"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项1", "选项2", "选项3"]}]
+                ],
+                legend: {
+                    data: ["人数"]
+                }
             };
         },
         methods: {
@@ -183,6 +189,71 @@
                 else {
                     return "--";
                 }
+            },
+            getRadioSeries(index) {
+                let series = {
+                    name: "人数",
+                    type: "pie",
+                    data: []
+                };
+
+                let mapping = {};
+                let i = 0;
+                for (let name of this.questionnaire[index].data.content.labels) {
+                    series.data.push({
+                        name: name,
+                        value: 0
+                    });
+
+                    mapping[name] = i;
+                    i++;
+                }
+
+                for (let r of this.results) {
+                    series.data[mapping[r[index].result]].value++;
+                }
+
+                return series;
+            },
+            getCheckSeries(index) {
+                let series = {
+                    name: "人数",
+                    type: "bar",
+                    data: []
+                };
+
+                let mapping = {};
+                let i = 0;
+                for (let name of this.questionnaire[index].data.content.labels) {
+                    series.data.push({
+                        name: name,
+                        value: 0
+                    });
+
+                    mapping[name] = i;
+                    i++;
+                }
+
+                for (let r of this.results) {
+                    for (let i of r[index].result) {
+                        series.data[mapping[i]].value++;
+                    }
+                }
+
+                return series;
+            },
+            getChartSeries(index) {
+                let res = [];
+                if (this.questionnaire[index].type === "radio") {
+                    let series = this.getRadioSeries(index);
+                    res.push(series);
+                }
+                else if (this.questionnaire[index].type === "check") {
+                    let series = this.getCheckSeries(index);
+                    res.push(series);
+                }
+
+                return res;
             }
         }
     }
