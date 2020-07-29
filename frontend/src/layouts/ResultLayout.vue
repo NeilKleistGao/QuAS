@@ -28,6 +28,7 @@
                 </div>
 
             </template>
+
             <template slot="统计图表">
                 <div class="quas-tab-slot">
                     <div v-for="(item, index) in questionnaire" :key="'chart' + index.toString()" style="margin-bottom: 25px">
@@ -35,21 +36,45 @@
                         <br/>
 
                         <div v-if="item.type === 'radio'">
-                            <quas-chart title="" :legend="legend" :name="'chart' + index.toString()" :series="getChartSeries(index)"/>
+                            <quas-chart title=""
+                                        :legend="legend"
+                                        :name="'chart' + index.toString()"
+                                        :series="getChartSeries(index)"/>
                         </div>
                         <div v-else-if="item.type === 'check'">
-                            <quas-chart title="" :labels="item.data.content.labels" :legend="legend" :name="'chart' + index.toString()" :series="getChartSeries(index)"/>
+                            <quas-chart title=""
+                                        :x-axis="{data: item.data.content.labels}"
+                                        :legend="legend"
+                                        :name="'chart' + index.toString()"
+                                        :series="getChartSeries(index)"/>
                         </div>
                         <div v-else-if="item.type === 'sort'">
-
-                        </div>
-                        <div v-else-if="item.type === 'drop'">
-
+                            <quas-chart title=""
+                                        :x-axis="getHeatXAxis(index)"
+                                        :y-axis="getHeatYAxis(index)"
+                                        :name="'chart' + index.toString()"
+                                        :series="getChartSeries(index)"
+                                        :visual-map="visualMap"/>
                         </div>
                         <span v-else>该类题目暂时不支持绘制统计图表</span>
                         <hr/>
                     </div>
                 </div>
+            </template>
+
+            <template slot="来源信息">
+                <quas-chart title="地区分布"
+                            :load-map="true"
+                            name="map"
+                            :series="mapSeries"
+                            :width="800"
+                            :height="600"/>
+                <quas-chart title="近7日的时间分布"
+                            name="time"
+                            :x-axis="line_axis"
+                            :series="line_series"
+                            :width="800"
+                            :height="600"/>
             </template>
         </quas-tab>
     </div>
@@ -59,6 +84,7 @@
     import QuasNav from "@/components/QuasWebUI/QuasNav";
     import QuasTab from "@/components/QuasWebUI/QuasTab";
     import QuasChart from "@/components/QuasWebUI/QuasChart";
+
     export default {
         name: "ResultLayout",
         components: {QuasChart, QuasTab, QuasNav},
@@ -67,7 +93,7 @@
                 nav_labels: ["问卷设计测试", "问卷填写测试", "问卷结果测试"],
                 nav_links: ["#/questionnaire/design/3154", "#/questionnaire/fill/3154", "#/questionnaire/result/3154"],
                 title: "关于问卷测试的问卷调查",
-                tab_labels: ["填写数据", "统计图表"],
+                tab_labels: ["填写数据", "统计图表", "来源信息"],
                 questionnaire: [
                     {
                         type: "none",
@@ -166,13 +192,76 @@
                     "sort": "排序题"
                 },
                 results: [
-                    [{},{result: "选项1"},{result: ["选项1"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项1", "选项2", "选项3"]}],
+                    [{},{result: "选项1"},{result: ["选项1"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项3", "选项1", "选项2"]}],
                     [{},{result: "选项2"},{result: ["选项1", "选项2"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项1", "选项2", "选项3"]}],
-                    [{},{result: "选项3"},{result: ["选项1", "选项2", "选项3"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项1", "选项2", "选项3"]}]
+                    [{},{result: "选项3"},{result: ["选项1", "选项2", "选项3"]},{result: "2020-09-23"},{result: "foo"},{result: "bar"},{result: ["选项1"]},{result: ["选项2", "选项1", "选项3"]}]
                 ],
                 legend: {
                     data: ["人数"]
-                }
+                },
+                visualMap: {
+                    min: 0,
+                    max: 100,
+                    calculable: true,
+                    orient: "horizontal",
+                    left: "center",
+                    bottom: "0%",
+                    inRange: {
+                        color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+                    }
+                },
+                mapSeries: [{
+                    type: "map",
+                    mapType: "china",
+                    name: "填写人数",
+                    label: {
+                        show: true,
+                    },
+                    data:[
+                        {name: '北京',value: Math.round(Math.random()*1000)},
+                        {name: '天津',value: Math.round(Math.random()*1000)},
+                        {name: '上海',value: Math.round(Math.random()*1000)},
+                        {name: '重庆',value: Math.round(Math.random()*1000)},
+                        {name: '河北',value: Math.round(Math.random()*1000)},
+                        {name: '河南',value: Math.round(Math.random()*1000)},
+                        {name: '云南',value: Math.round(Math.random()*1000)},
+                        {name: '辽宁',value: Math.round(Math.random()*1000)},
+                        {name: '黑龙江',value: Math.round(Math.random()*1000)},
+                        {name: '湖南',value: Math.round(Math.random()*1000)},
+                        {name: '安徽',value: Math.round(Math.random()*1000)},
+                        {name: '山东',value: Math.round(Math.random()*1000)},
+                        {name: '新疆',value: Math.round(Math.random()*1000)},
+                        {name: '江苏',value: Math.round(Math.random()*1000)},
+                        {name: '浙江',value: Math.round(Math.random()*1000)},
+                        {name: '江西',value: Math.round(Math.random()*1000)},
+                        {name: '湖北',value: Math.round(Math.random()*1000)},
+                        {name: '广西',value: Math.round(Math.random()*1000)},
+                        {name: '甘肃',value: Math.round(Math.random()*1000)},
+                        {name: '山西',value: Math.round(Math.random()*1000)},
+                        {name: '内蒙古',value: Math.round(Math.random()*1000)},
+                        {name: '陕西',value: Math.round(Math.random()*1000)},
+                        {name: '吉林',value: Math.round(Math.random()*1000)},
+                        {name: '福建',value: Math.round(Math.random()*1000)},
+                        {name: '贵州',value: Math.round(Math.random()*1000)},
+                        {name: '广东',value: Math.round(Math.random()*1000)},
+                        {name: '青海',value: Math.round(Math.random()*1000)},
+                        {name: '西藏',value: Math.round(Math.random()*1000)},
+                        {name: '四川',value: Math.round(Math.random()*1000)},
+                        {name: '宁夏',value: Math.round(Math.random()*1000)},
+                        {name: '海南',value: Math.round(Math.random()*1000)},
+                        {name: '台湾',value: Math.round(Math.random()*1000)},
+                        {name: '香港',value: Math.round(Math.random()*1000)},
+                        {name: '澳门',value: Math.round(Math.random()*1000)}
+                    ]
+                }],
+                line_axis: {
+                    type: "category",
+                    data: ["7月26日", "7月27日", "7月28日", "7月29日", "7月30日", "7月31日", "8月1日"]
+                },
+                line_series: [{
+                    data: [820, 932, 901, 934, 1290, 1330, 1320],
+                    type: "line"
+                }]
             };
         },
         methods: {
@@ -242,6 +331,41 @@
 
                 return series;
             },
+            getSortSeries(index){
+                let series = {
+                    name: "频率%",
+                    type: "heatmap",
+                    data: []
+                };
+
+                let xs = this.getHeatXAxis(index).data;
+                let ys = this.getHeatYAxis(index).data;
+                let map = [];
+
+                for (let i in xs) {
+                    map.push([]);
+                    // eslint-disable-next-line no-unused-vars
+                    for (let j in ys) {
+                        map[i].push(0);
+                    }
+                }
+
+                for (let r of this.results) {
+                    for (let i in r[index].result) {
+                        let j = ys.indexOf(r[index].result[i]);
+                        map[i][j]++
+                    }
+                }
+
+                let sum = this.results.length;
+                for (let i = 0; i < map.length; i++) {
+                    for (let j = 0; j < map[i].length; j++) {
+                        series.data.push([i, j, map[i][j] / sum * 100.0]);
+                    }
+                }
+
+                return series;
+            },
             getChartSeries(index) {
                 let res = [];
                 if (this.questionnaire[index].type === "radio") {
@@ -252,8 +376,36 @@
                     let series = this.getCheckSeries(index);
                     res.push(series);
                 }
+                else if (this.questionnaire[index].type === "sort") {
+                    let series = this.getSortSeries(index);
+                    res.push(series);
+                }
 
                 return res;
+            },
+            getHeatXAxis(index) {
+                let axis = {
+                    type: "category",
+                    data: [],
+                    splitArea: {
+                        show: true
+                    }
+                };
+
+                for (let i = 1; i <= this.questionnaire[index].data.content.labels.length; i++) {
+                    axis.data.push("第" + i.toString() + "位");
+                }
+
+                return axis;
+            },
+            getHeatYAxis(index) {
+                return {
+                    type: "category",
+                    data: this.questionnaire[index].data.content.labels,
+                    splitArea: {
+                        show: true
+                    }
+                };
             }
         }
     }

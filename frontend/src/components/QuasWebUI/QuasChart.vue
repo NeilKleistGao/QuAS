@@ -1,5 +1,7 @@
 <template>
-    <div :id="name" :style="chartStyle"></div>
+    <div>
+        <div :id="name" :style="chartStyle"></div>
+    </div>
 </template>
 
 <script>
@@ -18,8 +20,12 @@
                 type: Number,
                 default: 300
             },
-            labels: {
-                type: Array,
+            xAxis: {
+                type: Object
+            },
+            yAxis: {
+                type: Object,
+                default: () => {return {};}
             },
             legend: {
                 type: Object,
@@ -32,38 +38,69 @@
             name: {
                 type: String,
                 required: true
+            },
+            visualMap: {
+                type: Object
+            },
+            theme: {
+                type: String,
+                default: "light"
+            },
+            loadMap: {
+                type: Boolean,
+                default: false
+            }
+        },
+        data() {
+            return {
+                done: false
             }
         },
         mounted() {
-            let chart = this.$echarts.init(document.getElementById(this.name));
-            let option = null;
-
-            if (this.labels == undefined) {
-                option = {
-                    title: {
-                        text: this.title
-                    },
-                    tooltip: {},
-                    legend: this.legend,
-                    series: this.series
-                };
+            if (!this.loadMap) {
+                this.init();
             }
             else {
-                option = {
-                    title: {
-                        text: this.title
-                    },
-                    tooltip: {},
-                    legend: this.legend,
-                    xAxis: {
-                        data: this.labels
-                    },
-                    yAxis: {},
-                    series: this.series
-                };
+                this.$axios.get("/china.json").then((res) => {
+                    // console.log(res.data);
+                    this.$echarts.registerMap("china", res.data);
+                    this.init();
+                    this.done = true;
+                });
             }
+        },
+        methods: {
+            init() {
+                let chart = this.$echarts.init(document.getElementById(this.name), this.theme);
+                let option = null;
 
-            chart.setOption(option);
+                if (this.xAxis == undefined) {
+                    option = {
+                        title: {
+                            text: this.title
+                        },
+                        tooltip: {},
+                        legend: this.legend,
+                        series: this.series,
+                        visualMap: this.visualMap
+                    };
+                }
+                else {
+                    option = {
+                        title: {
+                            text: this.title
+                        },
+                        tooltip: {},
+                        legend: this.legend,
+                        xAxis: this.xAxis,
+                        yAxis: this.yAxis,
+                        series: this.series,
+                        visualMap: this.visualMap
+                    };
+                }
+
+                chart.setOption(option);
+            }
         },
         computed: {
             chartStyle() {
