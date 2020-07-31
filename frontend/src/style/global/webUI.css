@@ -209,3 +209,9 @@ td {
     display: block;
     margin-top: 20px;
 }
+
+.quas-statistic-grid {
+    display: grid;
+    grid-template-columns: 800px 800px;
+    grid-template-rows: 50% 50%;
+}

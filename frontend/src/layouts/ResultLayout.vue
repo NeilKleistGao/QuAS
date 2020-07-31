@@ -63,18 +63,35 @@
             </template>
 
             <template slot="来源信息">
-                <quas-chart title="地区分布"
-                            :load-map="true"
-                            name="map"
-                            :series="mapSeries"
-                            :width="800"
-                            :height="600"/>
-                <quas-chart title="近7日的时间分布"
-                            name="time"
-                            :x-axis="line_axis"
-                            :series="line_series"
-                            :width="800"
-                            :height="600"/>
+                <div class="quas-tab-slot">
+                    <div class="quas-statistic-grid">
+                        <quas-chart title="地区分布"
+                                    :load-map="true"
+                                    name="map"
+                                    :series="mapSeries"
+                                    :width="800"
+                                    :height="600"
+                                    :visual-map="map_visualMap"/>
+                        <quas-chart title="近7日的时间分布"
+                                    name="time"
+                                    :x-axis="line_axis"
+                                    :series="line_series"
+                                    :width="800"
+                                    :height="600"/>
+                        <quas-chart title="专业分布"
+                                    name="major"
+                                    :width="800"
+                                    :height="600"
+                                    :legend="test_major_legend"
+                                    :series="test_major_series"/>
+                        <quas-chart title="年级分布"
+                                    name="grade"
+                                    :width="800"
+                                    :height="600"
+                                    :legend="test_grade_legend"
+                                    :series="test_grade_series"/>
+                    </div>
+                </div>
             </template>
         </quas-tab>
     </div>
@@ -260,8 +277,55 @@
                 },
                 line_series: [{
                     data: [820, 932, 901, 934, 1290, 1330, 1320],
-                    type: "line"
-                }]
+                    type: "line",
+                    areaStyle: {}
+                }],
+                test_major_legend: {
+                    left: "center",
+                    top: "bottom",
+                    data: ["计算机", "电子工程", "经济管理", "生物工程", "理论物理"]
+                },
+                test_grade_legend: {
+                    left: "center",
+                    top: "bottom",
+                    data: ["本科一年级", "本科二年级", "本科三年级", "本科四年级"]
+                },
+                test_major_series: [
+                    {
+                        name: "人数",
+                        type: "pie",
+                        radius: [30, 110],
+                        roseType: "area",
+                        data: [
+                            {name: "计算机", value: 10},
+                            {name: "电子工程", value: 5},
+                            {name: "经济管理", value: 1},
+                            {name: "生物工程", value: 6},
+                            {name: "理论物理", value: 4}
+                        ]
+                    }
+                ],
+                test_grade_series: [
+                    {
+                        name: "人数",
+                        type: "pie",
+                        radius: [30, 110],
+                        roseType: "area",
+                        data: [
+                            {name: "本科一年级", value: 2},
+                            {name: "本科二年级", value: 7},
+                            {name: "本科三年级", value: 9},
+                            {name: "本科四年级", value: 4},
+                        ]
+                    }
+                ],
+                map_visualMap: {
+                    min: 0,
+                    max: 1000,
+                    inRange: {
+                        color: ["lightskyblue", "yellow", "orangered"]
+                    }
+                }
             };
         },
         methods: {
@@ -308,7 +372,7 @@
                 let series = {
                     name: "人数",
                     type: "bar",
-                    data: []
+                    data: [],
                 };
 
                 let mapping = {};
