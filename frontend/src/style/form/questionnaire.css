@@ -266,10 +266,6 @@ input[type="number"] {
     margin-left: 2.8rem;
 }
 
-.iconfont {
-    color: var(--primary);
-}
-
 .quas-dropdown {
     width: 80px;
     background-color: rgba(0, 0, 0, 0);

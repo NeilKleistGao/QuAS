@@ -33,13 +33,6 @@
             links: {
                 type: Array,
                 required: true
-            },
-            /**
-             * 当前活动项下标
-             */
-            active_index: {
-                type: Number,
-                default: 0
             }
         }
     }

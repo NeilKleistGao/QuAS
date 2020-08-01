@@ -73,7 +73,7 @@ td {
     position: absolute;
     top: 10%;
     right: 10%;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .quas-fill-container {
@@ -214,4 +214,33 @@ td {
     display: grid;
     grid-template-columns: 800px 800px;
     grid-template-rows: 50% 50%;
+}
+
+.quas-analysis-content {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin: 20px 20px;
+}
+
+.quas-analysis-cell {
+    margin: 10px 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #f5f5f5;
+    border-radius: 10px;
+    min-height: 650px;
+}
+
+.quas-remove-icon {
+    color: var(--error);
+    float: right;
+}
+
+.quas-list-item-active {
+    text-indent: 20px;
+    background-color: var(--secondary);
+}
+
+.quas-list-item-inactive {
+    text-indent: 0;
+    background-color: rgba(0, 0, 0, 0);
 }

@@ -6,6 +6,7 @@ import DesignLayout from "@/layouts/DesignLayout";
 import FillLayout from "@/layouts/FillLayout";
 import MobileFillLayout from "@/layouts/MobileFillLayout";
 import ResultLayout from "@/layouts/ResultLayout";
+import AnalysisLayout from "@/layouts/AnalysisLayout";
 
 Vue.use(VueRouter);
 
@@ -29,12 +30,16 @@ const routes = [
             {
                 path: "result/:id",
                 component: ResultLayout
+            },
+            {
+                path: "analysis/:id",
+                component: AnalysisLayout
             }
         ]
     },
     {
         path: "/",
-        redirect: "/questionnaire/result/3154"
+        redirect: "/questionnaire/analysis/3154"
     }
 ];
 
