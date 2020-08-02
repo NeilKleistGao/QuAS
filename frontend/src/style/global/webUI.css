@@ -244,3 +244,44 @@ td {
     text-indent: 0;
     background-color: rgba(0, 0, 0, 0);
 }
+
+.quas-table-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+}
+
+.quas-questionnaire-card {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px 10px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.quas-questionnaire-card > label {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    background-color: var(--secondary);
+}
+
+.quas-questionnaire-card > img {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
+    transition: all 0.3s;
+}
+
+.quas-questionnaire-card:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.quas-questionnaire-card:hover > img {
+    opacity: 0;
+}
+
+.quas-questionnaire-card:hover > label {
+    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
