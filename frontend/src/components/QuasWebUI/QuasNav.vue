@@ -25,14 +25,14 @@
              */
             labels: {
                 type: Array,
-                required: true
+                default: () => {return [];}
             },
             /**
              * 导航栏链接数组
              */
             links: {
                 type: Array,
-                required: true
+                default: () => {return [];}
             }
         }
     }

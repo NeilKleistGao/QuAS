@@ -8,11 +8,13 @@
                 @mouseout="switchRemoveIcon(-1)">
                 <div v-if="active_list[index]" style="width: 100%;" class="quas-list-item-active">
                     <span>{{item}}</span>
-                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon" @click="remove(index)"></i>
+                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"
+                       @click="remove(index)"/>
                 </div>
                 <div v-else style="width: 100%;" class="quas-list-item-inactive" @click="setActive(index)">
                     <span>{{item}}</span>
-                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon" @click="remove(index)"></i>
+                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"
+                       @click="remove(index)"/>
                 </div>
             </li>
         </ul>
