@@ -4,17 +4,14 @@
 
         <ul :key="update_key">
             <li v-for="(item, index) in list_items" :key="item"
-                @mouseover="switchRemoveIcon(index)"
-                @mouseout="switchRemoveIcon(-1)">
+                @click="setActive(index)">
                 <div v-if="active_list[index]" style="width: 100%;" class="quas-list-item-active">
                     <span>{{item}}</span>
-                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"
-                       @click="remove(index)"/>
+                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"/>
                 </div>
-                <div v-else style="width: 100%;" class="quas-list-item-inactive" @click="setActive(index)">
+                <div v-else style="width: 100%;" class="quas-list-item-inactive">
                     <span>{{item}}</span>
-                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"
-                       @click="remove(index)"/>
+                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"/>
                 </div>
             </li>
         </ul>
@@ -113,8 +110,12 @@
         margin-bottom: 10px;
     }
 
-    span {
+    span, a {
         width: 100%;
         margin-left: 10px;
+    }
+
+    a {
+        cursor: pointer;
     }
 </style>

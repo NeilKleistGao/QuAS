@@ -15,7 +15,14 @@
                     <quas-text-box style="display: inline-block" v-model="analyze_items[active_index].title"/>
                     <br/>
                     <br/>
-                    <label style="display: inline-block">类型：</label>
+                    <quas-dropdown :editable="false" :contents="analyze_drop_content" v-model="temp_type"/>
+
+                    <br/>
+                    <label style="margin-bottom: 10px">使用题目数据：</label>
+                    <quas-check-box-group v-if="analyze_items[active_index].method !== ''"
+                                          :editable="false"
+                                          :items="questionnaire_item_content"
+                                          v-model="temp_labels"/>
                 </div>
             </div>
         </div>
@@ -26,9 +33,11 @@
     import QuasNav from "@/components/QuasWebUI/QuasNav";
     import QuasList from "@/components/QuasWebUI/QuasList";
     import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
+    import QuasDropdown from "@/components/QuasQuestionnaire/QuasDropdown";
+    import QuasCheckBoxGroup from "@/components/QuasQuestionnaire/QuasCheckBoxGroup";
     export default {
         name: "AnalysisLayout",
-        components: {QuasTextBox, QuasList, QuasNav},
+        components: {QuasCheckBoxGroup, QuasDropdown, QuasTextBox, QuasList, QuasNav},
         data() {
             return {
                 nav_labels: ["问卷设计测试", "问卷填写测试", "问卷结果测试", "问卷分析测试"],
@@ -38,35 +47,184 @@
                 analyze_items: [{
                     title: "分析1",
                     type: "",
+                    method: "",
                     data: {
 
                     }
                 },{
                     title: "分析2",
                     type: "",
+                    method: "",
                     data: {
 
                     }
                 },{
                     title: "分析3",
                     type: "",
+                    method: "",
                     data: {
 
                     }
                 }],
                 active_index: -1,
-                update_key: 0
+                update_key: 0,
+                analyze_drop_content: {
+                labels: ["分析类型：", "分析方法"],
+                    items: [{
+                        level: 0,
+                        label: "数值计算"
+                    }, {
+                        level: 1,
+                        label: "平均值"
+                    },{
+                        level: 1,
+                        label: "最大值"
+                    },{
+                        level: 1,
+                        label: "最小值"
+                    },{
+                        level: 1,
+                        label: "方差"
+                    },{
+                        level: 1,
+                        label: "中位数"
+                    },{
+                        level: 1,
+                        label: "众数"
+                    }, {
+                        level: 0,
+                        label: "关联计算"
+                    },{
+                        level: 1,
+                        label: "卡方检验"
+                    },{
+                        level: 1,
+                        label: "Spearman相关系数"
+                    },{
+                        level: 1,
+                        label: "互信息"
+                    },]
+                },
+                temp_type: {
+                    result: ["", ""]
+                },
+                questionnaire_item_content: {
+                    labels: []
+                },
+                questionnaire: [
+                    {
+                        type: "none",
+                        data: {
+                            information: "这是一个测试",
+                            content: null,
+                            next: 0
+                        }
+                    },
+                    {
+                        type: "radio",
+                        data: {
+                            information: "这是一个单选题",
+                            content: {
+                                labels: ["选项１", "选项2", "选项3"],
+                                next: [3, 4, 5]
+                            },
+                            next: 0
+                        }
+                    },
+                    {
+                        type: "check",
+                        data: {
+                            information: "这是一个多选题",
+                            content: {
+                                labels: ["选项１", "选项2", "选项3"]
+                            },
+                            next: -1
+                        }
+                    },
+                    {
+                        type: "date",
+                        data: {
+                            information: "这是一个日期",
+                            content: {
+                                type: "date"
+                            },
+                            next: -1
+                        }
+                    },
+                    {
+                        type: "text",
+                        data: {
+                            information: "这是一个填空题",
+                            content: {
+                            },
+                            next: 0
+                        }
+                    },
+                    {
+                        type: "rich",
+                        data: {
+                            information: "这是一个多行文本",
+                            content: {
+
+                            },
+                            next: 0
+                        }
+                    },
+                    {
+                        type: "drop",
+                        data: {
+                            information: "这是一个下拉选项",
+                            content: {
+                                labels: ["题目1"],
+                                items: [{
+                                    level: 0,
+                                    label: "选项1"
+                                },{
+                                    level: 0,
+                                    label: "选项2"
+                                }]
+                            },
+                            next: 0
+                        }
+                    },
+                    {
+                        type: "sort",
+                        data: {
+                            information: "这是一个排序题",
+                            content: {
+                                labels: ["选项1", "选项2", "选项3"]
+                            },
+                            next: 0
+                        }
+                    }
+                ],
+                temp_labels: {
+                    result: []
+                }
             }
         },
         beforeMount() {
             for (let item of this.analyze_items) {
                 this.analyze_title.push(item.title);
             }
+
+            for (let ques of this.questionnaire) {
+                this.questionnaire_item_content.labels.push(ques.data.information);
+            }
         },
         methods: {
             update(index) {
                 this.active_index = index;
                 this.update_key++;
+            }
+        },
+        watch: {
+            temp_type: {
+                handler(new_value) {
+                    this.analyze_items[this.active_index].type = new_value.result[0];
+                    this.analyze_items[this.active_index].method = new_value.result[1];
+                },
+                deep: true
             }
         }
     }

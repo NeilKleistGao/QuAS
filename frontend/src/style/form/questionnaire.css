@@ -51,7 +51,7 @@ textarea {
 
 .quas-radio:after {
     content: "\a0";
-    width: 0px;
+    width: 0;
     height: 12px;
     text-align: center;
     background-color: var(--primary);
@@ -267,17 +267,17 @@ input[type="number"] {
 }
 
 .quas-dropdown {
-    width: 80px;
+    min-width: 80px;
     background-color: rgba(0, 0, 0, 0);
     transition: all 0.3s;
     padding: 5px;
     vertical-align: middle;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
 }
 
 .quas-dropdown:hover  {
-    border-bottom: 1px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
 }
 
 .quas-dropdown > select {
@@ -295,7 +295,7 @@ input[type="number"] {
 
 .quas-dropdown-grid {
     display: grid;
-    grid-template-columns: repeat(4, 180px);
+    grid-template-columns: repeat(6, 15%);
 }
 
 .quas-date-picker {

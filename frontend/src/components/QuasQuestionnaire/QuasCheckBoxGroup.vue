@@ -6,7 +6,8 @@
                             :key="label"
                             :label="label"
                             v-model="result"
-                            :selectable="selectable_list[index]"/>
+                            :selectable="selectable_list[index]"
+                            style="display: inline-block"/>
         </div>
         <div v-else :key="update_key">
             <quas-check-box class="quas-list-item"

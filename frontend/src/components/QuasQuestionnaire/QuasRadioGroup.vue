@@ -5,7 +5,8 @@
                         v-for="label in items.labels"
                         :name="name" :label="label"
                         :key="label"
-                        v-model="result"/>
+                        v-model="result"
+                        style="display: inline-block"/>
         </div>
         <div v-else :key="update_key">
             <quas-radio class="quas-list-item"

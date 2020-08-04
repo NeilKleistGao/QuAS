@@ -3,8 +3,12 @@
         <div v-if="!editable" :key="update_key" class="quas-dropdown-grid">
             <div v-for="(enable, index) in labels_enable" :key="index">
                 <div v-if="enable">
-                    <label>{{contents.labels[index]}}</label>
-                    <quas-dropdown-input v-model="result[index]" :items="getOptions(index)" :index="index" @click.native="modify(index)"/>
+                    <label style="display: inline-block;" v-if="index === 0">{{contents.labels[index]}}</label>
+                    <label style="display: inline-block; margin-left: 10px" v-else>{{contents.labels[index]}}</label>
+                    <quas-dropdown-input v-model="result[index]"
+                                         :items="getOptions(index)"
+                                         :index="index"
+                                         style="display: inline-block;"/>
                 </div>
             </div>
         </div>
@@ -73,11 +77,11 @@
                 }
                 else {
                     for (let i = 0; i < len; i++) {
-                        if (this.contents.items[i].label === this.result[index - 1] && i != len - 1) {
+                        if (this.contents.items[i].label === this.result[index - 1] && i !== len - 1) {
                             if (this.contents.items[i + 1].level > this.contents.items[i].level) {
                                 res.push(this.contents.items[i + 1].label);
                                 for (let j = i + 2; j < len; j++) {
-                                    if (this.contents.items[j].level != this.contents.items[i + 1].level) {
+                                    if (this.contents.items[j].level !== this.contents.items[i + 1].level) {
                                         break;
                                     }
 
@@ -97,33 +101,34 @@
              * @param index 当前下拉选框的下标
              */
             modify(index) {
-                if (this.result[index] != this.previous_result[index]) {
-                    this.previous_result[index] = this.result[index];
-                    for (let j = index + 1; j < this.result.length; j++) {
-                        this.labels_enable[j] = false;
-                        this.previous_result[j] = this.result[j] = "";
-                    }
-
-                    let item_len = this.contents.items.length;
-                    for (let j = 0; j < item_len; j++) {
-                        if (this.contents.items[j].label === this.result[index] && j != item_len - 1) {
-                            if (this.contents.items[j + 1].level > this.contents.items[j].level) {
-                                this.labels_enable[this.contents.items[j + 1].level] = true;
-                            }
-                            break;
-                        }
-                    }
-
-                    /**
-                     * 更新所选内容
-                     * @event{oninput}
-                     */
-                    this.$emit("input", {
-                        result: this.result
-                    });
-
-                    this.update_key++;
+                this.previous_result[index] = this.result[index];
+                for (let j = index + 1; j < this.result.length; j++) {
+                    this.labels_enable[j] = false;
+                    this.previous_result[j] = this.result[j] = "";
+                    this.labels_enable[this.contents.items[j].level] = false;
                 }
+
+                let item_len = this.contents.items.length;
+                for (let j = 0; j < item_len; j++) {
+                    if (this.contents.items[j].label === this.result[index] && j != item_len - 1) {
+                        if (this.contents.items[j + 1].level > this.contents.items[j].level) {
+                            this.labels_enable[this.contents.items[j + 1].level] = true;
+                        }
+                        break;
+                    }
+                }
+
+                console.log(this.labels_enable);
+
+                /**
+                 * 更新所选内容
+                 * @event{oninput}
+                 */
+                this.$emit("input", {
+                    result: this.result
+                });
+
+                this.update_key++;
             }
         },
         watch: {
@@ -137,6 +142,16 @@
                         labels: this.labels,
                         items: new_value
                     });
+                },
+                deep: true
+            },
+            result: {
+                handler(new_value) {
+                    for (let i = 0; i < new_value.length; i++) {
+                        if (new_value[i] !== this.previous_result[i]) {
+                            this.modify(i);
+                        }
+                    }
                 },
                 deep: true
             }
@@ -156,7 +171,6 @@
         font-size: 16px;
     }
     label {
-        margin-left: 0.3rem;
         margin-right: 0.5rem;
     }
 </style>
