@@ -105,7 +105,11 @@
                 for (let j = index + 1; j < this.result.length; j++) {
                     this.labels_enable[j] = false;
                     this.previous_result[j] = this.result[j] = "";
-                    this.labels_enable[this.contents.items[j].level] = false;
+                    // this.labels_enable[this.contents.items[j].level] = false;
+                }
+
+                for (let i = this.contents.items[index].level + 1; i < 6; i++) {
+                    this.labels_enable[i] = false;
                 }
 
                 let item_len = this.contents.items.length;
@@ -117,8 +121,6 @@
                         break;
                     }
                 }
-
-                console.log(this.labels_enable);
 
                 /**
                  * 更新所选内容

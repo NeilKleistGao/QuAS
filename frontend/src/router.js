@@ -4,7 +4,6 @@ import VueRouter from "vue-router";
 import App from "@/./App"
 import DesignLayout from "@/layouts/DesignLayout";
 import FillLayout from "@/layouts/FillLayout";
-import MobileFillLayout from "@/layouts/MobileFillLayout";
 import ResultLayout from "@/layouts/ResultLayout";
 import AnalysisLayout from "@/layouts/AnalysisLayout";
 import CollectionLayout from "@/layouts/CollectionLayout";
@@ -23,10 +22,6 @@ const routes = [
             {
                 path: "fill/:id",
                 component: FillLayout
-            },
-            {
-                path: "mobile_fill/:id",
-                component: MobileFillLayout
             },
             {
                 path: "result/:id",

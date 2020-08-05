@@ -190,11 +190,6 @@
             }
         },
         beforeMount() {
-            let platform = require("../utils/platform");
-            if (!platform.isPC()) {
-                window.location.href = "#/questionnaire/mobile_fill/3154";
-            }
-
             this.unfold(0, -1);
             this.copyBackup();
         },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="!editable">
+        <div v-if="!editable" style="margin-top: 10px">
             <quas-check-box class="quas-list-item"
                             v-for="(label, index) in items.labels"
                             :key="label"

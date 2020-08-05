@@ -47,6 +47,9 @@ textarea {
     vertical-align: middle;
     border: 1px solid var(--primary);
     background-color: white;
+    position: relative;
+    top: -2px;
+    left: -1px;
 }
 
 .quas-radio:after {
@@ -58,18 +61,34 @@ textarea {
     border-radius: 50%;
     display: block;
     position: absolute;
-    top: 3px;
-    left: 3px;
+    top: 2px;
+    left: 2px;
+    transition: width 0.2s;
+    -webkit-transition: width 0.2s;
 }
+
+@media only screen and (min-width: 600px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 992px) {
+
+}
+@media only screen and (min-width: 1200px) {
+
+}
+
 
 .quas-radio:checked:after {
     width: 12px;
-    height: 12px;
-}
-
-.quas-radio:after {
-    transition: width 0.2s;
-    -webkit-transition: width 0.2s;
 }
 
 .quas-design-radio:before {
@@ -168,9 +187,57 @@ li > .quas-design-text {
     left: 2px;
 }
 
+@media only screen and (min-width: 600px) {
+    .quas-text, .quas-valid-text, .quas-invalid-text {
+        max-width: 100px;
+    }
+
+    .quas-rich-text, .quas-overflow-rich {
+        height: 50px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .quas-text, .quas-valid-text, .quas-invalid-text {
+        max-width: 120px;
+    }
+
+    .quas-rich-text, .quas-overflow-rich {
+        height: 60px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .quas-text, .quas-valid-text, .quas-invalid-text {
+        max-width: 200px;
+    }
+
+    .quas-rich-text, .quas-overflow-rich {
+        height: 70px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .quas-text, .quas-valid-text, .quas-invalid-text {
+        max-width: 300px;
+    }
+
+    .quas-rich-text, .quas-overflow-rich {
+        height: 80px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .quas-text, .quas-valid-text, .quas-invalid-text {
+        max-width: 450px;
+    }
+
+    .quas-rich-text, .quas-overflow-rich {
+        height: 100px;
+    }
+}
+
 .quas-text, .quas-valid-text, .quas-invalid-text {
     outline: none;
-    max-width: 450px;
     height: 16px;
     border: none;
     border-bottom: 2px solid black;
@@ -179,6 +246,7 @@ li > .quas-design-text {
     margin-top: 1.5rem;
     margin-left: 0.5rem;
     background-color: rgba(0, 0, 0, 0);
+    overflow: scroll;
 }
 
 .quas-valid-text {
@@ -204,7 +272,6 @@ input[type="number"] {
 
 .quas-rich-text, .quas-overflow-rich {
     width: 80%;
-    height: 100px;
     margin-top: 1rem;
     transition: 0.5s;
     -webkit-transition: 0.5s;

@@ -18,11 +18,20 @@
                     <quas-dropdown :editable="false" :contents="analyze_drop_content" v-model="temp_type"/>
 
                     <br/>
-                    <label style="margin-bottom: 10px">使用题目数据：</label>
-                    <quas-check-box-group v-if="analyze_items[active_index].method !== ''"
-                                          :editable="false"
-                                          :items="questionnaire_item_content"
-                                          v-model="temp_labels"/>
+                    <div v-if="analyze_items[active_index].method !== ''">
+                        <label>使用题目数据：</label>
+                        <quas-check-box-group :editable="false"
+                                              :items="questionnaire_item_content"
+                                              v-model="temp_labels"/>
+
+                        <button class="quas-submit-button" style="margin-top: 20px" @click="checkAndShow">提交计算</button>
+                    </div>
+
+                    <div v-if="test_show">
+                        TODO:分析结果
+                    </div>
+
+                    <button class="quas-warning-button" style="position: fixed; bottom: 100px">删除分析</button>
                 </div>
             </div>
         </div>
@@ -75,21 +84,6 @@
                         label: "数值计算"
                     }, {
                         level: 1,
-                        label: "平均值"
-                    },{
-                        level: 1,
-                        label: "最大值"
-                    },{
-                        level: 1,
-                        label: "最小值"
-                    },{
-                        level: 1,
-                        label: "方差"
-                    },{
-                        level: 1,
-                        label: "中位数"
-                    },{
-                        level: 1,
                         label: "众数"
                     }, {
                         level: 0,
@@ -109,7 +103,8 @@
                     result: ["", ""]
                 },
                 questionnaire_item_content: {
-                    labels: []
+                    labels: [],
+                    min: -1
                 },
                 questionnaire: [
                     {
@@ -200,7 +195,8 @@
                 ],
                 temp_labels: {
                     result: []
-                }
+                },
+                test_show: false
             }
         },
         beforeMount() {
@@ -209,13 +205,23 @@
             }
 
             for (let ques of this.questionnaire) {
-                this.questionnaire_item_content.labels.push(ques.data.information);
+                if (ques.type !== "none" && ques.type !== "text" && ques.type !== "rich") {
+                    this.questionnaire_item_content.labels.push(ques.data.information);
+                }
             }
         },
         methods: {
             update(index) {
                 this.active_index = index;
                 this.update_key++;
+            },
+            checkAndShow() {
+                if (this.temp_labels.result.length < this.questionnaire_item_content.min) {
+                    alert("至少需要选择" + this.questionnaire_item_content.min + "项");
+                }
+                else {
+                    this.test_show = true;
+                }
             }
         },
         watch: {
@@ -223,6 +229,15 @@
                 handler(new_value) {
                     this.analyze_items[this.active_index].type = new_value.result[0];
                     this.analyze_items[this.active_index].method = new_value.result[1];
+
+                    if (this.analyze_items[this.active_index].type === "数值计算") {
+                        this.questionnaire_item_content.min = 1;
+                    }
+                    else if (this.analyze_items[this.active_index].type === "关联计算") {
+                        this.questionnaire_item_content.min = 2;
+                    }
+
+                    this.temp_labels.result = [];
                 },
                 deep: true
             }
