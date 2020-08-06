@@ -141,7 +141,8 @@
         },
         computed: {
             chartStyle() {
-                return "width:" + this.width + "px; height:" + this.height + "px;";
+                const scale = document.documentElement.clientWidth / 1920;
+                return "width:" + (this.width * scale).toString() + "px; height:" + (this.height * scale).toString() + "px;";
             }
         }
     }

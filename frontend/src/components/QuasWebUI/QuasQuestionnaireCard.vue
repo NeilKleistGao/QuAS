@@ -35,14 +35,23 @@
     export default {
         name: "QuasQuestionnaireCard",
         props: {
+            /**
+             * 问卷标题
+             */
             title: {
                 type: String,
                 required: true
             },
+            /**
+             * 问卷当前状态，只有"idle"（未开始发放）和"running"（正在发放）两种情况
+             */
             value: {
                 type: String,
                 required: true
             },
+            /**
+             * 问卷的id
+             */
             qid: {
                 type: String,
                 required: true
@@ -54,8 +63,11 @@
             };
         },
         methods: {
+            /**
+             * 点击操作图标后的回调函数
+             * @param type 所点击的图标类型
+             */
             operate(type) {
-                console.log(type)
                 if (type === "edit") {
                     window.location = "#/questionnaire/design/" + this.qid;
                 }
@@ -67,6 +79,9 @@
                         this.state = "idle";
                     }
 
+                    /**
+                     * 更新问卷的状态
+                     */
                     this.$emit("input", this.state);
                 }
                 else if (type === "statistics") {

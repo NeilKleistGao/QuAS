@@ -74,10 +74,8 @@ td {
 }
 
 .quas-tool-bar {
-    width: 64px;
     height: 80%;
     position: fixed;
-    left: 2.5%;
     top: 10%;
     background-color: var(--secondary);
     text-align: center;
@@ -93,17 +91,59 @@ td {
     padding-right: 16px;
 }
 
+@media only screen and (min-width: 768px) {
+    .quas-tool-bar {
+        left: 2.75%;
+    }
+}
+
+@media only screen   and (min-width: 992px) {
+    .quas-tool-bar {
+        left: 2.75%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .quas-tool-bar {
+        width: 64px;
+        left: 2.5%;
+    }
+}
+
 .quas-tool-icon:hover {
     background-color: #a6dcef;
 }
 
 .quas-design-container {
     background-color: #f5f5f5;
-    width: 80%;
-    position: absolute;
-    top: 10%;
-    right: 10%;
     margin-bottom: 60px;
+}
+
+@media only screen and (min-width: 768px) {
+    .quas-design-container {
+        width: 70%;
+        position: absolute;
+        top: 10%;
+        right: 15%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .quas-design-container {
+        width: 70%;
+        position: absolute;
+        top: 10%;
+        right: 15%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .quas-design-container {
+        width: 80%;
+        position: absolute;
+        top: 10%;
+        right: 10%;
+    }
 }
 
 .quas-fill-container {

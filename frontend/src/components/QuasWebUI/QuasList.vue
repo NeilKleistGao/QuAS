@@ -7,11 +7,9 @@
                 @click="setActive(index)">
                 <div v-if="active_list[index]" style="width: 100%;" class="quas-list-item-active">
                     <span>{{item}}</span>
-                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"/>
                 </div>
                 <div v-else style="width: 100%;" class="quas-list-item-inactive">
                     <span>{{item}}</span>
-                    <i v-if="remove_display[index]" class="iconfont icon-guanbi quas-remove-icon"/>
                 </div>
             </li>
         </ul>
@@ -25,10 +23,16 @@
     export default {
         name: "QuasList",
         props: {
+            /**
+             * 列表标题
+             */
             title: {
                 type: String,
                 default: ""
             },
+            /**
+             * 列表项内容
+             */
             value: {
                 type: Array,
                 required: true
@@ -38,46 +42,47 @@
             return {
                 list_items: this.value,
                 active_list: [],
-                remove_display: [],
                 update_key: 0
             };
         },
         methods: {
+            /**
+             * 设置当前列表项为选中
+             * @param index 当前项的下标
+             * @private
+             */
             setActive(index) {
                 for (let i = 0; i < this.active_list.length; i++) {
                     this.active_list[i] = (i === index);
                 }
 
                 this.update_key++;
+                /**
+                 * 返回选中项的下标
+                 */
                 this.$emit("callback", index);
             },
-            switchRemoveIcon(index) {
-                for (let i = 0; i < this.active_list.length; i++) {
-                    this.remove_display[i] = (i === index);
-                }
-                this.update_key++;
-            },
+            /**
+             * 添加新的列表项
+             * @private
+             */
             push() {
                 this.list_items.push("新建分析");
                 this.active_list.push(false);
-                this.remove_display.push(false);
-            },
-            remove(index) {
-                this.list_items.splice(index, 1);
-                this.active_list.splice(index, 1);
-                this.remove_display.splice(index, 1);
             }
         },
         beforeMount() {
             // eslint-disable-next-line no-unused-vars
             for (let i in this.value) {
                 this.active_list.push(false);
-                this.remove_display.push(false);
             }
         },
         watch: {
             list_items: {
                 handler(new_value) {
+                    /**
+                     * 更新列表项内容
+                     */
                     this.$emit("input", new_value);
                 },
                 deep: true

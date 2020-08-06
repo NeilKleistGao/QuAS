@@ -25,8 +25,8 @@
                     <label>日期选择类型：</label>
                     <quas-radio-group name="radio_type" :items="date_type_label_list" v-model="date_type_res"/>
                     <br/>
-                    <quas-check-box v-if="type !== 'none'" :editable="false" label="范围选择"/>
-                    <quas-check-box :editable="false" label="限制有效日期范围"/>
+                    <quas-check-box v-if="type !== 'none'" :editable="false" label="范围选择" v-model="is_range"/>
+                    <quas-check-box :editable="false" label="限制有效日期范围" v-model="is_limit"/>
                     <div v-if="content.limit">
                         <br/>
                         <label>有效日期范围：</label>
@@ -162,8 +162,8 @@
                 },
                 date_range: {
                     result: {
-                        begin: "",
-                        end: ""
+                        begin: "2020-01-01",
+                        end: "2020-08-06"
                     }
                 },
                 drop_max: 0,
@@ -178,7 +178,9 @@
                     result: "文本"
                 },
                 text_reg: "",
-                nullable_list: []
+                nullable_list: [],
+                is_range: [],
+                is_limit: []
             };
         },
         watch: {
@@ -342,6 +344,18 @@
                         information: this.information,
                         content: content
                     })
+                },
+                deep: true
+            },
+            is_range: {
+                handler(new_value) {
+                    this.content.range = new_value.length > 0;
+                },
+                deep: true
+            },
+            is_limit: {
+                handler(new_value) {
+                    this.content.limit = new_value.length > 0;
                 },
                 deep: true
             }

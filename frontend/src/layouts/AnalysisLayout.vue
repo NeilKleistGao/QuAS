@@ -13,6 +13,7 @@
                 <div v-if="active_index !== -1" style="margin-top: 20px; margin-left: 20px" :key="update_key">
                     <label style="display: inline-block">名称：</label>
                     <quas-text-box style="display: inline-block" v-model="analyze_items[active_index].title"/>
+                    <button class="quas-warning-button" style="margin-left: 20px">删除分析</button>
                     <br/>
                     <br/>
                     <quas-dropdown :editable="false" :contents="analyze_drop_content" v-model="temp_type"/>
@@ -30,8 +31,6 @@
                     <div v-if="test_show">
                         TODO:分析结果
                     </div>
-
-                    <button class="quas-warning-button" style="position: fixed; bottom: 100px">删除分析</button>
                 </div>
             </div>
         </div>

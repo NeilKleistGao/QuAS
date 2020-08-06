@@ -17,6 +17,10 @@
             };
         },
         methods: {
+            /**
+             * 选项点中时的回调函数
+             * @param label 选中项的标签
+             */
             callback(label) {
                 /**
                  * 返回点击项的名称
