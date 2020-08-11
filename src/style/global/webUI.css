@@ -1,9 +1,5 @@
 @import "animation.css";
 
-nav {
-    background-color: var(--secondary);
-}
-
 th, td {
     overflow: hidden;
     text-align: center;
@@ -11,66 +7,6 @@ th, td {
 
 td {
     font-weight: normal;
-}
-
-.quas-nav-band .quas-nav-bar {
-    float: left;
-}
-
-.quas-nav-link {
-    text-decoration: none;
-}
-
-@media only screen and (min-width: 600px) {
-    .quas-nav-bar > ul.quas-nav-list {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .quas-nav-bar > ul.quas-nav-list {
-        display: none;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .quas-nav-bar > ul.quas-nav-list {
-        display: inline-block;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .quas-nav-bar > ul.quas-nav-list {
-        display: inline-block;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .quas-nav-bar > ul.quas-nav-list {
-        display: inline-block;
-    }
-}
-
-.quas-nav-bar > ul {
-    display: inline;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.quas-nav-bar > ul > li {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    transition: all 0.5s;
-}
-
-.quas-nav-bar > ul > li > img {
-    margin-bottom: -8px;
-}
-
-.quas-nav-bar > ul.quas-nav-list > li:hover {
-    background-color: #a6dcef;
 }
 
 .quas-tool-bar {
@@ -418,20 +354,6 @@ td {
     margin-top: -32px;
     opacity: 0;
     z-index: 999;
-}
-
-.quas-card-operation-button {
-    text-align: center;
-    color: var(--primary);
-}
-
-.quas-card-operation-button > img {
-    cursor: pointer;
-}
-
-.quas-card-operation-button > small {
-    display: block;
-    font-size: 15px;
 }
 
 .quas-questionnaire-card:hover > .quas-card-operation-grid {
