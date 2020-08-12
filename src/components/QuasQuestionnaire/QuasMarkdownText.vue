@@ -8,27 +8,16 @@
             <i class="iconfont icon-shengyinkai" @click="insertMultiMedia('voc')"/>
             <i class="iconfont icon-shexiangji" @click="insertMultiMedia('med')"/>
 
-            <quas-setting-modal ref="modal" title="选择资源">
-                <template slot="content">
-                    <label>输入{{hint_text}}路径：</label>
-                    <br/>
-                    <input type="text" v-model="path" class="quas-design-text">
-                    <button class="quas-operation-button" @click="upload">确定</button>
-                </template>
-            </quas-setting-modal>
-
-            <textarea class="quas-rich-text" v-model="content" ref="box"/>
+            <textarea style="min-width: 20rem;" class="form-control" rows="3" v-model="content" ref="box"/>
         </div>
     </div>
 </template>
 
 <script>
     import marked from "marked";
-    import QuasSettingModal from "@/components/QuasQuestionnaire/QuasSettingModal";
 
     export default {
         name: "QuasMarkdownText",
-        components: {QuasSettingModal},
         props: {
             /**
              * 是否可编辑
@@ -150,15 +139,7 @@
     }
 
     i:hover {
-        color: var(--primary);
+        color: #050709;
         opacity: 100%;
-    }
-
-    div .quas-rich-text {
-        height: 80px;
-    }
-
-    label {
-        margin-left: 0.3rem;
     }
 </style>

@@ -1,30 +1,34 @@
 <template>
     <div>
         <quas-nav :labels="nav_labels" :links="nav_links"/>
-        <quas-side-tools @callback="insert"/>
 
-        <div class="quas-design-container">
-            <div class="quas-design-header">
-                <h2 style="display: inline-block">问卷标题：</h2>
-                <quas-text-box style="display: inline-block"/>
-                <br/>
-            </div>
+        <br/>
+        <div class="container-fluid">
+            <quas-side-tools @callback="insert" class="position-fixed"/>
+            <div class="row justify-content-center">
+                <div class="card bg-light col-8 mb-3">
+                    <div class="card-header text-center">
+                        <h5>问卷标题：</h5>
+                        <input class="form-control form-control-lg">
+                    </div>
 
-            <div v-for="(item, index) in questionnaire" :key="index">
-                <div style="margin-left: 20px">
-                    <h4 style="margin-left: 40px">第{{index + 1}}题</h4>
-                    <quas-questionnaire-item style="margin-left: 80px"
-                                             class="quas-ques-item"
-                                             :type="item.type"
-                                             v-model="item.data"
-                                             :editable="true"
-                                            :problems_list="getProblemsList(index + 1)"/>
+                    <div class="card-body">
+                        <div v-for="(item, index) in questionnaire" :key="index">
+                            <div style="margin-left: 20px">
+                                <span>第{{index + 1}}题</span>
+                                <quas-questionnaire-item class="quas-ques-item"
+                                                         :type="item.type"
+                                                         v-model="item.data"
+                                                         :editable="true"
+                                                         :problems_list="getProblemsList(index + 1)"/>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-outline-success">保存修改</button>
+                    </div>
                 </div>
-                <br/>
-            </div>
-
-            <div style="text-align: center">
-                <button class="quas-submit-button">保存修改</button>
             </div>
 
         </div>
@@ -35,11 +39,10 @@
 
     import QuasNav from "@/components/QuasWebUI/QuasNav";
     import QuasSideTools from "@/components/QuasWebUI/QuasSideTools";
-    import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
     import QuasQuestionnaireItem from "@/components/QuasQuestionnaire/QuasQuestionnaireItem";
     export default {
         name: "DesignLayout",
-        components: {QuasQuestionnaireItem, QuasTextBox, QuasSideTools, QuasNav},
+        components: {QuasSideTools, QuasNav, QuasQuestionnaireItem},
         data() {
             return {
                 nav_labels: ["问卷设计测试", "问卷填写测试", "问卷结果测试", "问卷分析测试"],

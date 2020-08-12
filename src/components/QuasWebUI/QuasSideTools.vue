@@ -1,8 +1,13 @@
 <template>
-    <div class="quas-tool-bar">
-        <div v-for="(item, index) in icons" :key="index">
-            <img class="quas-tool-icon" :src="item + '.png'" width="32" height="32" @click="callback(item)">
-            <span class="quas-tool-tip">{{tips[index]}}</span>
+    <div class="card bg-primary col-1">
+        <div class="card-header text-center">
+            <h4 class="text-light">工具栏</h4>
+        </div>
+        <div class="card-body row justify-content-center">
+            <div v-for="(item, index) in icons" :key="index" style="display: inline-block">
+                <img class="btn btn-sm" :src="item + '.png'"  @click="callback(item)">
+                <span class="quas-tool-tip">{{tips[index]}}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -32,5 +37,22 @@
 </script>
 
 <style scoped>
+    span {
+        visibility: hidden;
+        width: 80px;
+        background-color: #EFEFEF;
+        opacity: 75%;
+        text-align: center;
+        color: black;
+        border-radius: 5px;
+        padding: 3px 0;
+        margin-left: 10px;
+        position: absolute;
+        z-index: 999;
+    }
 
+    img:hover + span {
+        visibility: visible;
+        z-index: 999;
+    }
 </style>

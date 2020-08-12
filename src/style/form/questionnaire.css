@@ -1,33 +1,5 @@
 @import "../global/color.css";
 
-input[type="radio"], input[type="checkbox"] {
-    position: relative;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    margin-left: 0.5rem;
-}
-
-input[type="radio"], input[type="checkbox"] {
-    cursor: pointer;
-}
-
-input::-webkit-calendar-picker-indicator {
-    background-color: rgba(0, 0, 0, 0);
-}
-
-ul, li {
-    list-style: none;
-}
-
-ul {
-    margin-left: -20px;
-}
-
-textarea {
-    resize: none;
-}
-
 ::-webkit-clear-button {
     visibility: hidden;
 }

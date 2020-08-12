@@ -1,11 +1,8 @@
 <template>
-    <div style="margin-top: 10px">
-        <div class="quas-dropdown" style="display: inline-block">
-            <select v-model="result">
-                <option v-for="item in items" :key="item" :value="item">{{item}}</option>
-            </select>
-        </div>
-
+    <div class="form-group">
+        <select class="custom-select" v-model="result">
+            <option v-for="item in items" :key="item" :value="item">{{item}}</option>
+        </select>
     </div>
 </template>
 

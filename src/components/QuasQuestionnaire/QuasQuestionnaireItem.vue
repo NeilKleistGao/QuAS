@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="editable" class="quas-design-grid">
-            <div>
+        <div v-if="editable" >
+            <div class="row">
                 <quas-markdown-text v-model="information" :editable="editable" :markdown="information"/>
                 <br/>
                 <quas-check-box v-if="type !== 'none'" :editable="false" label="选做" v-model="nullable_list"/>
@@ -46,23 +46,23 @@
                     <label>正则表达式：</label>
                     <quas-text-box style="display: inline-block" v-model="text_reg"/>
                 </div>
-            </div>
 
-            <div>
-                <br/>
-                <quas-check-box-group v-if="type === 'check'" :editable="editable" v-model="content"/>
-                <quas-dropdown v-else-if="type === 'drop'" :editable="editable" v-model="content"/>
-                <quas-radio-group v-else-if="type === 'radio'" :editable="editable" v-model="content" :name="information"/>
-                <quas-sort-list v-else-if="type === 'sort'" :editable="editable" v-model="content"/>
-            </div>
-
-            <div style="margin-top: -48px">
-                <quas-linker v-if="type !== 'radio'" label="默认跳转：" :items="problems_list" v-model="next"/>
-                <div v-if="type === 'radio'" style="margin-top: 28px">
+                <div>
+                    <br/>
+                    <quas-check-box-group v-if="type === 'check'" :editable="editable" v-model="content"/>
+                    <quas-dropdown v-else-if="type === 'drop'" :editable="editable" v-model="content"/>
+                    <quas-radio-group v-else-if="type === 'radio'" :editable="editable" v-model="content" :name="information"/>
+                    <quas-sort-list v-else-if="type === 'sort'" :editable="editable" v-model="content"/>
                 </div>
-                <br/>
-                <div v-if="type === 'radio'">
-                    <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中跳转：" :items="problems_list" v-model="content.next[index]"/>
+
+                <div class="ml-auto">
+                    <quas-linker v-if="type !== 'radio'" label="默认跳转：" :items="problems_list" v-model="next"/>
+                    <div v-if="type === 'radio'" style="margin-top: 28px">
+                    </div>
+                    <br/>
+                    <div v-if="type === 'radio'">
+                        <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中跳转：" :items="problems_list" v-model="content.next[index]"/>
+                    </div>
                 </div>
             </div>
 
