@@ -2,49 +2,43 @@
     <div>
         <div v-if="editable" >
             <div class="row">
-                <quas-markdown-text v-model="information" :editable="editable" :markdown="information"/>
-                <br/>
-                <quas-check-box v-if="type !== 'none'" :editable="false" label="选做" v-model="nullable_list"/>
-                <br/>
+                <div>
+                    <quas-markdown-text v-model="information" :editable="editable" :markdown="information"/>
+                    <br/>
+                    <quas-check-box v-if="type !== 'none'" :editable="false" label="选做" v-model="nullable_list"/>
+                    <button class="btn btn-sm btn-outline-danger">删除题目</button>
+                    <br/>
 
-                <div v-if="type === 'check'">
-                    <label>最多可选：</label>
-                    <quas-text-box style="display: inline-block" :reg="/^\d+$/" v-model="check_min"/>
-                    <br/>
-                    <label>最少需要选：</label>
-                    <quas-text-box style="display: inline-block" :reg="/^\d+$/" v-model="check_max"/>
-                </div>
-                <div v-else-if="type === 'drop'">
-                    <div v-for="(label, index) in content.labels" :key="index">
-                        <label v-if="index <= drop_max">标题{{(index + 1).toString()}}：</label>
-                        <quas-text-box v-if="index <= drop_max" type="text" v-model="content.labels[index]"/>
-                        <br v-if="index <= drop_max"/>
+                    <div v-if="type === 'check'">
+                        <quas-text-box :reg="/^\d+$/" v-model="check_min" label="最少需选："/>
+                        <quas-text-box :reg="/^\d+$/" v-model="check_max" label="最多可选："/>
                     </div>
-                </div>
-                <div v-else-if="type === 'date'">
-                    <label>日期选择类型：</label>
-                    <quas-radio-group name="radio_type" :items="date_type_label_list" v-model="date_type_res"/>
-                    <br/>
-                    <quas-check-box v-if="type !== 'none'" :editable="false" label="范围选择" v-model="is_range"/>
-                    <quas-check-box :editable="false" label="限制有效日期范围" v-model="is_limit"/>
-                    <div v-if="content.limit">
+                    <div v-else-if="type === 'drop'">
+                        <div v-for="(label, index) in content.labels" :key="index">
+                            <quas-text-box :label="'标题' + (index + 1).toString()" v-if="index <= drop_max" type="text" v-model="content.labels[index]"/>
+                        </div>
+                    </div>
+                    <div v-else-if="type === 'date'">
+                        <quas-radio-group label="日期选择类型：" name="radio_type" :items="date_type_label_list" v-model="date_type_res"/>
                         <br/>
-                        <label>有效日期范围：</label>
-                        <quas-date-picker :range="true" :type="date_type" v-model="date_range"/>
+                        <quas-check-box v-if="type !== 'none'" :editable="false" label="范围选择" v-model="is_range"/>
+                        <quas-check-box :editable="false" label="限制有效日期范围" v-model="is_limit"/>
+                        <div v-if="content.limit">
+                            <br/>
+                            <label>有效日期范围：</label>
+                            <quas-date-picker :range="true" :type="date_type" v-model="date_range"/>
+                        </div>
                     </div>
-                </div>
-                <div v-else-if="type === 'rich'">
-                    <label>最少字数：</label>
-                    <quas-text-box style="display: inline-block" :reg="/^\d+$/" v-model="rich_min"/>
-                    <br/>
-                    <label>最多字数：</label>
-                    <quas-text-box style="display: inline-block" :reg="/^\d+$/" v-model="rich_max"/>
-                </div>
-                <div v-else-if="type === 'text'">
-                    <label>文本类型：</label>
-                    <quas-radio-group name="text_type" :items="text_type_label_list" v-model="text_type_res"/>
-                    <label>正则表达式：</label>
-                    <quas-text-box style="display: inline-block" v-model="text_reg"/>
+                    <div v-else-if="type === 'rich'">
+                        <quas-text-box label="最少字数：" :reg="/^\d+$/" v-model="rich_min"/>
+                        <quas-text-box label="最多字数：" :reg="/^\d+$/" v-model="rich_max"/>
+                    </div>
+                    <div v-else-if="type === 'text'">
+                        <label>文本类型：</label>
+                        <quas-radio-group name="text_type" :items="text_type_label_list" v-model="text_type_res"/>
+                        <br/>
+                        <quas-text-box v-model="text_reg" label="正则表达式：" v-if="text_type_res.result === '文本'"/>
+                    </div>
                 </div>
 
                 <div>
@@ -57,11 +51,13 @@
 
                 <div class="ml-auto">
                     <quas-linker v-if="type !== 'radio'" label="默认跳转：" :items="problems_list" v-model="next"/>
-                    <div v-if="type === 'radio'" style="margin-top: 28px">
-                    </div>
-                    <br/>
                     <div v-if="type === 'radio'">
-                        <quas-linker v-for="(item, index) in content.labels" :key="index" label="选中跳转：" :items="problems_list" v-model="content.next[index]"/>
+                        <quas-linker v-for="(item, index) in content.labels"
+                                     :key="index"
+                                     label="选中跳转："
+                                     :items="problems_list"
+                                     v-model="content.next[index]"
+                                     style="margin-top: 1rem"/>
                     </div>
                 </div>
             </div>

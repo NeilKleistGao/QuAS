@@ -1,17 +1,15 @@
 <template>
     <div>
         <div v-if="!editable" style="margin-top: 10px">
-            <quas-check-box class="quas-list-item"
-                            v-for="(label, index) in items.labels"
+            <quas-check-box v-for="(label, index) in items.labels"
                             :key="label"
                             :label="label"
                             v-model="result"
                             :selectable="selectable_list[index]"
                             style="display: inline-block"/>
         </div>
-        <div v-else :key="update_key">
-            <quas-check-box class="quas-list-item"
-                            :editable="true"
+        <div v-else :key="update_key" class="form-group">
+            <quas-check-box :editable="true"
                             :draggable="true"
                             v-for="(label, index) in labels"
                             :key="index"
@@ -20,7 +18,7 @@
                             @dragstart.native="dragStart(index)"
                             @dragenter.native="dragEnter(index)"
                             @dragend.native="dragEnd"/>
-            <button @click="push" class="quas-operation-button">添加</button>
+            <button @click="push" class="btn btn-sm btn-outline-info" style="margin-left: 2rem">添加</button>
         </div>
     </div>
 </template>

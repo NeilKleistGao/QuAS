@@ -1,27 +1,30 @@
 <template>
     <div>
         <quas-nav :labels="nav_labels" :links="nav_links"/>
+        <br/>
 
-        <div class="quas-fill-container">
-            <h1 class="quas-fill-header">{{title}}</h1>
-            <br/>
-
-            <div v-for="(link, index) in showing" :key="update_key.toString() + '-' + index.toString()">
-                <div style="margin-left: 20px; width: 60%">
-                    <h4 style="margin-left: 40px">第{{index + 1}}题</h4>
-                    <quas-questionnaire-item style="margin-left: 80px"
-                                             class="quas-ques-item"
-                                             :type="questionnaire[link].type"
-                                             :questionnaire="questionnaire[link].data"
-                                             :editable="false"
-                                             v-model="results[link]"/>
-                    <br/>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="card bg-light col-8 mb-3">
+                    <div class="card-header">
+                        <h1 class="quas-fill-header">{{title}}</h1>
+                    </div>
+                    <div class="card-body">
+                        <div v-for="(link, index) in showing" :key="update_key.toString() + '-' + index.toString()">
+                            <div>
+                                <h5>第{{index + 1}}题</h5>
+                                <quas-questionnaire-item :type="questionnaire[link].type"
+                                                         :questionnaire="questionnaire[link].data"
+                                                         :editable="false"
+                                                         v-model="results[link]"/>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-outline-success">提交问卷</button>
+                    </div>
                 </div>
-            </div>
-
-            <br/>
-            <div style="text-align: center">
-                <button class="quas-submit-button">提交问卷</button>
             </div>
         </div>
         <br/>

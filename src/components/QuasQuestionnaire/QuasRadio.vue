@@ -1,19 +1,20 @@
 <template>
-    <div>
+    <div class="custom-control custom-radio">
         <div v-if="!editable">
-            <input ref="box" class="quas-radio" type="radio" :id="label" :name="name" @click="updateSelect">
-            <label :for="label"> {{label}} </label>
+            <input ref="box" class="custom-control-input" type="radio" :id="'radio' + label" :name="name" v-model="selected_text">
+            <label class="custom-control-label" :for="'radio' + label"> {{label}} </label>
         </div>
         <div v-else>
-            <input class="quas-design-radio" type="radio" disabled>
-            <input class="quas-design-text" type="text" v-model="label_text">
+            <quas-text-box v-model="label_text"/>
         </div>
     </div>
 </template>
 
 <script>
+    import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
     export default {
         name: "QuasRadio",
+        components: {QuasTextBox},
         props: {
             /**
              * 是否可编辑
@@ -52,6 +53,7 @@
         methods: {
             /**
              * 更新选择状态
+             * @private
              */
             updateSelect() {
                 this.selected_text = this.label;
@@ -59,7 +61,7 @@
                  * 更新选中结果
                  * @event{oninput}
                  */
-                this.$emit("input", this.selected_text);
+
             }
         },
         watch: {
@@ -69,6 +71,10 @@
                  * @event{oninput}
                  */
                 this.$emit("input", new_value);
+            },
+            selected_text() {
+                console.log(this.label)
+                this.$emit("input", this.label);
             }
         },
         mounted() {

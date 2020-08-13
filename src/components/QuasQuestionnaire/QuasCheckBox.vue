@@ -1,19 +1,19 @@
 <template>
-    <div>
-        <div v-if="!editable">
-            <input class="quas-check" ref="box" type="checkbox" :id="label" @click="updateSelect" :disabled="!selectable">
-            <label :for="label"> {{label}} </label>
+    <div class="custom-control custom-checkbox">
+        <div v-if="!editable" @click="updateSelect">
+            <input class="custom-control-input" ref="box" type="checkbox" :id="'check-' + label" :disabled="!selectable">
+            <label :for="'check-' + label" class="custom-control-label"> {{label}} </label>
         </div>
         <div v-else>
-            <input type="checkbox" class="quas-design-check" disabled>
-            <input class="quas-design-text" type="text" v-model="label_text">
+            <quas-text-box v-model="label_text"/>
         </div>
     </div>
 </template>
 
 <script>
+    import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
     export default {
-        name: "QuasCheckBox",
+        components: {QuasTextBox},
         props: {
             /**
              * 是否可编辑

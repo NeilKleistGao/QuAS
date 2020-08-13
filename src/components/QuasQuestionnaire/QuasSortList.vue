@@ -7,17 +7,13 @@
                      :draggable="true"
                      @dragstart="dragStart(index)"
                      @dragenter="dragEnter(index)"
-                     @dragend="dragEnd"
-                     class="quas-transition-list-item">
-                    <quas-sort-item class="quas-sort-item"
-                                    :label="label"/>
+                     @dragend="dragEnd">
+                    <quas-sort-item :label="label"/>
                 </div>
-
             </transition-group>
         </div>
         <div v-else :key="update_key">
-            <quas-sort-item class="quas-sort-item"
-                            v-for="(label, index) in labels"
+            <quas-sort-item v-for="(label, index) in labels"
                             :key="index"
                             v-model="labels[index]"
                             :editable="true"
@@ -26,7 +22,7 @@
                             @dragstart.native="dragStartWhenEditing(index)"
                             @dragenter.native="dragEnterWhenEditing(index)"
                             @dragend.native="dragEndWhenEditing"/>
-            <button @click="push" class="quas-operation-button">添加</button>
+            <button @click="push" class="btn btn-sm btn-outline-info" style="margin-left: 2rem">添加</button>
         </div>
     </div>
 </template>

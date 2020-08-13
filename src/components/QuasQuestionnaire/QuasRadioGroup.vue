@@ -1,16 +1,14 @@
 <template>
     <div>
         <div v-if="!editable">
-            <quas-radio class="quas-list-item"
-                        v-for="label in items.labels"
+            <quas-radio v-for="label in items.labels"
                         :name="name" :label="label"
                         :key="label"
                         v-model="result"
                         style="display: inline-block"/>
         </div>
-        <div v-else :key="update_key">
-            <quas-radio class="quas-list-item"
-                        :editable="true"
+        <div v-else :key="update_key" class="form-group">
+            <quas-radio :editable="true"
                         :draggable="true"
                         v-for="(label, index) in labels"
                         :key="index"
@@ -20,7 +18,7 @@
                         @dragenter.native="dragEnter(index)"
                         @dragend.native="dragEnd"
                         :name="name"/>
-            <button @click="push" class="quas-operation-button">添加</button>
+            <button @click="push" class="btn btn-sm btn-outline-info" style="margin-left: 2rem">添加</button>
         </div>
     </div>
 </template>

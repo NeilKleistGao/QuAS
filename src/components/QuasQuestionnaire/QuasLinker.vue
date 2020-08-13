@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="quas-hollow-circle"></div>
-        <div class="quas-horizontal-line"></div>
+        <div class="hollow-circle"></div>
+        <div class="horizontal-line"></div>
         <label>{{label}}</label>
         <quas-dropdown-input style="display:inline-block;" :items="items_cut" :hidden_icon="true" v-model="result"/>
     </div>
@@ -66,5 +66,23 @@
     label {
         display: inline-block;
         margin-left: 10px;
+    }
+
+    .hollow-circle {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+    }
+
+    .horizontal-line {
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        border-top: 2px solid var(--primary);
+        position: relative;
+        top: -4px
     }
 </style>

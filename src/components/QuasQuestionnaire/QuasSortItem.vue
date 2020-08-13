@@ -1,19 +1,19 @@
 <template>
-    <div>
+    <div class="custom-control">
         <div v-if="!editable">
-            <i class="iconfont icon-wuxupailie" />
-            <label :for="label"> {{label}} </label>
+            <span class="badge badge-primary">{{label}}</span>
         </div>
         <div v-else>
-            <i class="iconfont icon-wuxupailie" />
-            <input class="quas-design-text" type="text" v-model="text">
+            <quas-text-box :nullable="true" v-model="text"/>
         </div>
     </div>
 </template>
 
 <script>
+    import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
     export default {
         name: "QuasSortItem",
+        components: {QuasTextBox},
         props: {
             /**
              * 是否可编辑
