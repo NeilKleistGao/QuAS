@@ -6,9 +6,6 @@ import echarts from "echarts";
 import axios from "axios";
 
 
-import "./style/quas.css";
-// import "./utils/rem"
-
 Vue.config.productionTip = false;
 Vue.prototype.$echarts = echarts;
 Vue.prototype.$axios = axios;

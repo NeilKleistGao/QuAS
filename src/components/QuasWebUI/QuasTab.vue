@@ -1,12 +1,13 @@
 <template>
     <div>
-        <button style="margin-left:5%; visibility: hidden"/>
-        <button v-for="(label, index) in labels" :key="index" :class="getButtonStyle(index)" @click="select(index)">{{label}}</button>
-        <div class="quas-tab-content" style="display: block">
-            <br/>
-            <div v-for="(label, index) in labels" :key="index">
-                <!--每一个label对应显示的内容-->
-                <slot :name="label" v-if="current === index"/>
+        <ul class="nav nav-tabs">
+            <li class="nav-item" v-for="(label, index) in labels" :key="index">
+                <a :class="getButtonStyle(index)" @click="select(index)">{{label}}</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div v-for="(label, index) in labels" :key="label">
+                <slot :name="label" v-if="index === current"></slot>
             </div>
         </div>
     </div>
@@ -35,10 +36,10 @@
              */
             getButtonStyle(index) {
                 if (index === this.current) {
-                    return "quas-tab-button-selected";
+                    return "nav-link active";
                 }
                 else {
-                    return "quas-tab-button";
+                    return "nav-link";
                 }
             },
             /**

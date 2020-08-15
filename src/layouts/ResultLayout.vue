@@ -1,37 +1,37 @@
 <template>
     <div>
         <quas-nav :labels="nav_labels" :links="nav_links"/>
-
-        <h1 class="quas-fill-header">{{title}}——填写结果</h1>
         <br/>
 
-        <quas-tab :labels="tab_labels">
-            <template slot="填写数据">
-                <div class="quas-tab-slot">
-                    <table class="quas-table">
+        <div class="container-fluid">
+            <div class="text-center">
+                <h2>{{title}}——填写结果</h2>
+            </div>
+
+            <quas-tab :labels="tab_labels">
+                <template slot="填写数据">
+                    <table class="table table-hover">
                         <thead>
-                            <tr>
-                                <th v-for="(item, index) in questionnaire" :key="'th' + index.toString()">{{getQuestionnaireTitle(item.type, item.data.information)}}</th>
-                            </tr>
+                        <tr>
+                            <th v-for="(item, index) in questionnaire" :key="'th' + index.toString()">{{getQuestionnaireTitle(item.type, item.data.information)}}</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(result, index) in results" :key="'tr' + index.toString()">
-                                <td v-for="(item, index2) in result" :key="'td' + index2.toString()">
-                                    {{getResult(item)}}
-                                </td>
-                            </tr>
+                        <tr class="table-light" v-for="(result, index) in results" :key="'tr' + index.toString()">
+                            <td v-for="(item, index2) in result" :key="'td' + index2.toString()">
+                                {{getResult(item)}}
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
-                </div>
-                <div style="text-align: right; margin-top: 10px; margin-right: 10px">
-                    <button class="quas-submit-button">导出excel</button>
-                </div>
 
-            </template>
-
-            <template slot="统计图表">
-                <div class="quas-tab-slot">
-                    <div v-for="(item, index) in questionnaire" :key="'chart' + index.toString()" style="margin-bottom: 25px">
+                    <div class="text-right">
+                        <button class="btn btn-outline-success">导出excel</button>
+                    </div>
+                </template>
+                <template slot="统计图表">
+                    <br/>
+                    <div v-for="(item, index) in questionnaire" :key="'chart' + index.toString()">
                         <span>第{{index + 1}}题：{{item.data.information}}</span>
                         <br/>
 
@@ -56,44 +56,44 @@
                                         :series="getChartSeries(index)"
                                         :visual-map="visualMap"/>
                         </div>
-                        <span v-else>该类题目暂时不支持绘制统计图表</span>
+                        <span class="text-muted" v-else>该类题目暂时不支持绘制统计图表</span>
                         <hr/>
                     </div>
-                </div>
-            </template>
+                </template>
+                <template slot="来源信息">
+                    <quas-chart title="地区分布"
+                                :load-map="true"
+                                name="map"
+                                :series="mapSeries"
+                                :width="800"
+                                :height="600"
+                                :visual-map="map_visualMap"
+                                style="display: inline-block"/>
+                    <quas-chart title="近7日的时间分布"
+                                name="time"
+                                :x-axis="line_axis"
+                                :series="line_series"
+                                :width="800"
+                                :height="600"
+                                style="display: inline-block"/>
+                    <quas-chart title="专业分布"
+                                name="major"
+                                :width="800"
+                                :height="600"
+                                :legend="test_major_legend"
+                                :series="test_major_series"
+                                style="display: inline-block"/>
+                    <quas-chart title="年级分布"
+                                name="grade"
+                                :width="800"
+                                :height="600"
+                                :legend="test_grade_legend"
+                                :series="test_grade_series"
+                                style="display: inline-block"/>
+                </template>
+            </quas-tab>
+        </div>
 
-            <template slot="来源信息">
-                <div class="quas-tab-slot">
-                    <div class="quas-statistic-grid">
-                        <quas-chart title="地区分布"
-                                    :load-map="true"
-                                    name="map"
-                                    :series="mapSeries"
-                                    :width="800"
-                                    :height="600"
-                                    :visual-map="map_visualMap"/>
-                        <quas-chart title="近7日的时间分布"
-                                    name="time"
-                                    :x-axis="line_axis"
-                                    :series="line_series"
-                                    :width="800"
-                                    :height="600"/>
-                        <quas-chart title="专业分布"
-                                    name="major"
-                                    :width="800"
-                                    :height="600"
-                                    :legend="test_major_legend"
-                                    :series="test_major_series"/>
-                        <quas-chart title="年级分布"
-                                    name="grade"
-                                    :width="800"
-                                    :height="600"
-                                    :legend="test_grade_legend"
-                                    :series="test_grade_series"/>
-                    </div>
-                </div>
-            </template>
-        </quas-tab>
     </div>
 </template>
 

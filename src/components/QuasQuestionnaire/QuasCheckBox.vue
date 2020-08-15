@@ -83,8 +83,6 @@
 </script>
 
 <style scoped>
-    @import "../../style/form/questionnaire.css";
-
     label, input[type="text"] {
         position: relative;
         top: -6px;

@@ -1,35 +1,42 @@
 <template>
     <div>
         <quas-nav :labels="nav_labels" :links="nav_links"/>
-
-        <h1 class="quas-fill-header">{{title}}——问卷分析</h1>
         <br/>
 
-        <div class="quas-analysis-content">
-            <div class="quas-analysis-cell">
-                <quas-list title="分析列表" v-model="analyze_title" style="height: 100%" @callback="update"/>
+        <div class="container-fluid">
+            <div class="text-center">
+                <h2>{{title}}——问卷分析</h2>
             </div>
-            <div class="quas-analysis-cell">
-                <div v-if="active_index !== -1" style="margin-top: 20px; margin-left: 20px" :key="update_key">
-                    <label style="display: inline-block">名称：</label>
-                    <quas-text-box style="display: inline-block" v-model="analyze_items[active_index].title"/>
-                    <button class="quas-warning-button" style="margin-left: 20px">删除分析</button>
-                    <br/>
-                    <br/>
-                    <quas-dropdown :editable="false" :contents="analyze_drop_content" v-model="temp_type"/>
+            <br/>
 
-                    <br/>
-                    <div v-if="analyze_items[active_index].method !== ''">
-                        <label>使用题目数据：</label>
-                        <quas-check-box-group :editable="false"
-                                              :items="questionnaire_item_content"
-                                              v-model="temp_labels"/>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-2" style="min-height: 40rem">
+                    <quas-list title="分析列表" v-model="analyze_title" style="height: 100%" @callback="update"/>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-7 card border-primary">
+                    <div v-if="active_index !== -1" style="margin-top: 20px; margin-left: 20px" :key="update_key">
+                        <label style="display: inline-block">名称：</label>
+                        <quas-text-box style="display: inline-block" v-model="analyze_items[active_index].title"/>
+                        <button class="btn btn-danger" style="margin-left: 20px">删除分析</button>
+                        <br/>
+                        <br/>
+                        <quas-dropdown :editable="false" :contents="analyze_drop_content" v-model="temp_type"/>
 
-                        <button class="quas-submit-button" style="margin-top: 20px" @click="checkAndShow">提交计算</button>
-                    </div>
+                        <br/>
+                        <div v-if="analyze_items[active_index].method !== ''">
+                            <label>使用题目数据：</label>
+                            <quas-check-box-group :editable="false"
+                                                  :items="questionnaire_item_content"
+                                                  v-model="temp_labels"/>
 
-                    <div v-if="test_show">
-                        TODO:分析结果
+                            <button class="btn btn-success" style="margin-top: 20px" @click="checkAndShow">提交计算</button>
+                        </div>
+
+                        <div v-if="test_show">
+                            TODO:分析结果
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,6 +50,7 @@
     import QuasTextBox from "@/components/QuasQuestionnaire/QuasTextBox";
     import QuasDropdown from "@/components/QuasQuestionnaire/QuasDropdown";
     import QuasCheckBoxGroup from "@/components/QuasQuestionnaire/QuasCheckBoxGroup";
+
     export default {
         name: "AnalysisLayout",
         components: {QuasCheckBoxGroup, QuasDropdown, QuasTextBox, QuasList, QuasNav},

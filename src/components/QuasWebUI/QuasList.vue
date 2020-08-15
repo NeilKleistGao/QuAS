@@ -1,20 +1,26 @@
 <template>
-    <div>
-        <h3>{{title}}</h3>
+    <div class="card border-primary">
+        <div class="card-header">
+            <h3>{{title}}</h3>
+        </div>
 
-        <ul :key="update_key">
-            <li v-for="(item, index) in list_items" :key="item"
-                @click="setActive(index)">
-                <div v-if="active_list[index]" style="width: 100%;" class="quas-list-item-active">
-                    <span>{{item}}</span>
-                </div>
-                <div v-else style="width: 100%;" class="quas-list-item-inactive">
-                    <span>{{item}}</span>
-                </div>
-            </li>
-        </ul>
-        <div style="text-align: center;">
-            <button class="quas-submit-button" @click="push">新建</button>
+        <div class="card-body">
+            <div class="list-group">
+                <a v-for="(item, index) in list_items" :key="item" @click="setActive(index)" class="list-group-item-action">
+                    <div v-if="active_list[index]" style="width: 100%;">
+                        <span>{{item}}</span>
+                    </div>
+                    <div v-else style="width: 100%;">
+                        <span>{{item}}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="text-center">
+                <button class="btn btn-outline-success" @click="push">新建</button>
+            </div>
         </div>
     </div>
 </template>

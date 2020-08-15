@@ -88,8 +88,6 @@
 </script>
 
 <style scoped>
-    @import "../../style/form/questionnaire.css";
-
     label {
         margin-left: 0.3rem;
     }
